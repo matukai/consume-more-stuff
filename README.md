@@ -1,4 +1,4 @@
-# Consume More Stuff
+# Consume More Stuff by Team CRUDs
 > A custom CMS for personal product sale
 
 ## Introduction
