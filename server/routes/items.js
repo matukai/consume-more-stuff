@@ -5,12 +5,15 @@ const router = express.Router();
 
 router.route('/new')
   .post((req, res) => {
+    console.log('newwwww')
     let data = {
-      name, price, model, dimensions,
+      name, price, condition, category, itemStatus, model, dimensions,
        notes, user_id, image
     } = req.body;
-    return new Item(data)
-      .save()
+    return new Item()
+      console.log('Item')
+      .fetch({withRelated: ['condition', 'category', 'itemStatus']})
+      .save(data)
       .then(item => {
         return res.json(item)
       })

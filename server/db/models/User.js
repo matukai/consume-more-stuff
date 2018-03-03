@@ -5,11 +5,11 @@ class User extends bookshelf.Model {
   get hasTimestamps() {return true}
 
   item() {
-    return this.hasMany('items', 'user_id')
+    return this.hasMany('items')
   }
 
   userStatus() {
-    return this.hasOne('user_status', 'user_id')
+    return this.hasOne('user_status', 'user_status_id')
   }
 
 }

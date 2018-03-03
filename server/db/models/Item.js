@@ -10,15 +10,15 @@ class Item extends bookshelf.Model {
   }
 
   condition() {
-    return this.hasOne('conditions', 'item_id')
+    return this.hasOne('conditions', 'condition_id')
   }
 
   category() {
-    return this.hasOne('categories', 'item_id')
+    return this.belongsTo('categories', 'category_id')
   }
 
   itemStatus() {
-    return this.hasOne('item_status', 'item_id')
+    return this.belongsTo('item_status', 'item_status_id')
   }
 
 }

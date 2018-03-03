@@ -6,7 +6,7 @@ class UserStatus extends bookshelf.Model {
 
 
   user() {
-    return this.belongsTo('users', 'user_id')
+    return this.hasMany('users');
   }
 
 }
