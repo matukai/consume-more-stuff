@@ -12,9 +12,6 @@ const itemsRoute = require('./routes/items');
 const User = require('./db/models/User');
 const auth = require('./isAuthenticated');
 
-const usersRoute = require('./routes/users');
-const itemsRoute = require('./routes/items');
-
 const PORT = process.env.PORT || 8080;
 const app = express();
 const saltRounds = 12;
