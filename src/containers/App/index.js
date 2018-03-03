@@ -4,6 +4,7 @@ import Nav from '../../components/NavBar';
 import Main from '../../components/Main';
 import logo from '../../logo.svg';
 import '../../App.css';
+import Home from '../Home/index';
 
 class App extends Component {
   render() {
@@ -22,7 +23,6 @@ class App extends Component {
           Don't forget to be nice to yourself!
           <br/>
           <iframe src="https://giphy.com/embed/2hgAt92zs4qbp9Ld4W" width="480" height="270" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/evite-puppy-casual-2hgAt92zs4qbp9Ld4W">via GIPHY</a></p>
-
         </p> */}
 
 
@@ -32,7 +32,6 @@ class App extends Component {
           <Main />
         </div>
 
-        </p>
 
       </div>
     );
