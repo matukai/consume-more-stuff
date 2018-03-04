@@ -48,19 +48,19 @@ class NewItem extends Component {
           <select 
           name="condition" 
           value={this.state.condition}
-          onChange={}>
+          onChange>
           <option value="">Condition</option>
           <option value="ew">New</option>
           <option value="good">Good</option>
-          <option value="fair">fair</option>
-          <option value="worn">worn</option>
-          <option value="used">used</option>
+          <option value="fair">Fair</option>
+          <option value="worn">Worn</option>
+          <option value="used">Used</option>
           </select>
           <br/>
           <select 
           name="category"
           value={this.state.category}
-          onChange={}>
+          onChange>
           <option value="">Category</option>
           <option value="vehicles">Vehicles</option>
           <option value="appliances">Appliances</option>
