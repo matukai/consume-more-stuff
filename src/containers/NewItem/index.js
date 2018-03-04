@@ -95,7 +95,7 @@ class NewItem extends Component {
           value={this.state.newItem.conditon}
           onChange={this.handleItemCondition}>
           <option value="">Condition</option>
-          <option value="ew">New</option>
+          <option value="new">New</option>
           <option value="good">Good</option>
           <option value="fair">Fair</option>
           <option value="worn">Worn</option>
