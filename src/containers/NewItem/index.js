@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import {connect} from 'react-redux';
+import {createItem} from '../../actions';
 
 class NewItem extends Component {
 
@@ -26,7 +28,7 @@ class NewItem extends Component {
     this.handleItemModel = this.handleItemModel.bind(this)
     this.handleItemDimensions = this.handleItemDimensions.bind(this)
     this.handleItemNotes = this.handleItemNotes.bind(this)
-
+    this.submitHandler = this.submitHandler.bind(this)
   }
 
   handleItemName (event) {
@@ -63,7 +65,7 @@ class NewItem extends Component {
 
   submitHandler (event) {
     event.preventDefault();
-    
+    createItem(this.state.newItem);
     this.setState({newItem: Object.assign({}, this.state.newItem, {name: '', image: '', price: '',
   condition: '', category: '', model: '', dimensions: '', notes: ''})})
   }
@@ -124,12 +126,28 @@ class NewItem extends Component {
           <textarea name="notes" value={this.state.newItem.notes} onChange={this.handleItemNotes} 
           id="" cols="30" rows="10">Notes: </textarea>
           <br/>
-
+          <input type="submit"/>
         </form>
       </div>
     )
   }
 }// end NewItem
 
+const mapStateToProps = state => {
+  return {
 
-export default NewItem
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    createItem: (data) => {
+      dispatch(createItem(data))
+    }
+  }
+}
+
+
+
+
+export default connect(mapStateToProps,mapDispatchToProps)(NewItem)

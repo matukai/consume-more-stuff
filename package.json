@@ -14,6 +14,7 @@
   },
   "homepage": "https://github.com/levibrooke/consume-more-stuff#readme",
   "dependencies": {
+    "axios": "^0.18.0",
     "bcrypt": "^1.0.3",
     "bookshelf": "^0.12.1",
     "connect-redis": "^3.3.3",
