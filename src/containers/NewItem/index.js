@@ -18,37 +18,80 @@ class NewItem extends Component {
       }
     }
 
+    this.handleItemName = this.handleItemName.bind(this)
+    this.handleItemImage = this.handleItemImage.bind(this)
+    this.handleItemPrice = this.handleItemPrice.bind(this)
+    this.handleItemCondition = this.handleItemCondition.bind(this)
+    this.handleItemCategory = this.handleItemCategory.bind(this)
+    this.handleItemModel = this.handleItemModel.bind(this)
+    this.handleItemDimensions = this.handleItemDimensions.bind(this)
+    this.handleItemNotes = this.handleItemNotes.bind(this)
+
   }
 
+  handleItemName (event) {
+    this.setState({ newItem: Object.assign({}, this.state.newItem, {name: event.target.value})})
+  }
 
+  handleItemImage (event) {
+    this.setState({ newItem: Object.assign({}, this.state.newItem, {image: event.target.value})})
+  }
+
+  handleItemPrice (event) {
+    this.setState({ newItem: Object.assign({}, this.state.newItem, {price: event.target.value})})
+  }
+
+  handleItemCondition (event) {
+    this.setState({ newItem: Object.assign({}, this.state.newItem, {condition: event.target.value})})
+  }
+
+  handleItemCategory (event) {
+    this.setState({ newItem: Object.assign({}, this.state.newItem, {category: event.target.value})})
+  }
+
+  handleItemModel (event) {
+    this.setState({ newItem: Object.assign({}, this.state.newItem, {model: event.target.value})})
+  }
+
+  handleItemDimensions (event) {
+    this.setState({ newItem: Object.assign({}, this.state.newItem, {dimensions: event.target.value})})
+  }
+
+  handleItemNotes (event) {
+    this.setState({ newItem: Object.assign({}, this.state.newItem, {notes: event.target.value})})
+  }
+
+  submitHandler (event) {
+    event.preventDefault();
+    
+    this.setState({newItem: Object.assign({}, this.state.newItem, {name: '', image: '', price: '',
+  condition: '', category: '', model: '', dimensions: '', notes: ''})})
+  }
 
   render() {
     return (
       <div className="new-item-form">
-        <form>
+        <form onSubmit={this.submitHandler}>
 
           <input type="text"
           placeholder="item name"
-          value
-          onChange
-          />
+          value={this.state.newItem.name}
+          onChange={this.handleItemName}/>
           <br/>
           <input type="text"
           placeholder="image"
-          value
-          onChange
-          />
+          value={this.state.newItem.image}
+          onChange={this.handleItemImage}/>
           <br/>
           <input type="text"
           placeholder="price"
-          value
-          onChange
-          />
+          value={this.state.newItem.price}
+          onChange={this.handleItemPrice}/>
           <br/>
           <select 
           name="condition" 
-          value={this.state.condition}
-          onChange>
+          value={this.state.newItem.conditon}
+          onChange={this.handleItemCondition}>
           <option value="">Condition</option>
           <option value="ew">New</option>
           <option value="good">Good</option>
@@ -59,8 +102,8 @@ class NewItem extends Component {
           <br/>
           <select 
           name="category"
-          value={this.state.category}
-          onChange>
+          value={this.state.newItem.category}
+          onChange={this.handleItemCategory}>
           <option value="">Category</option>
           <option value="vehicles">Vehicles</option>
           <option value="appliances">Appliances</option>
@@ -70,17 +113,16 @@ class NewItem extends Component {
           <br/>
           <input type="text"
           placeholder="model/make"
-          value
-          onChange
-          />
+          value={this.state.newItem.model}
+          onChange={this.handleItemModel}/>
           <br/>
           <input type="text"
           placeholder="dimensions"
-          value
-          onChange
-          />
+          value={this.state.newItem.dimensions}
+          onChange={this.handleItemDimensions}/>
           <br/>
-          <textarea name="notes" id="" cols="30" rows="10">Notes: </textarea>
+          <textarea name="notes" value={this.state.newItem.notes} onChange={this.handleItemNotes} 
+          id="" cols="30" rows="10">Notes: </textarea>
           <br/>
 
         </form>
