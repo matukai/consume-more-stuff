@@ -11,6 +11,8 @@ import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import Home from '../containers/Home';
 import NewItem from '../containers/NewItem';
+import EditItem from '../containers/EditItem';
+
 
 const Main = (props) => {
 
@@ -22,7 +24,7 @@ const Main = (props) => {
         <Route exact path="/" component={Home} />
         <Route exact path="/register" />
         <Route exact path="/new-item" component={NewItem} />
-        <Route path="/edit-item" />
+        <Route path="/edit-item" component={EditItem}/>
         <Route path="/settings" /> 
     
       </Switch>

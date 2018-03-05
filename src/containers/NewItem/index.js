@@ -103,7 +103,7 @@ class NewItem extends Component {
           </select>
           <br/>
           <select
-          name="category"
+          name="category (required) "
           value={this.state.newItem.category}
           onChange={this.handleItemCategory}>
           <option value="">Category</option>
@@ -127,7 +127,7 @@ class NewItem extends Component {
           id="" cols="30" rows="10">Notes: </textarea>
           <br/>
           <input type="submit"/>
-          
+
         </form>
       </div>
     )
