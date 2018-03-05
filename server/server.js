@@ -54,8 +54,6 @@ passport.deserializeUser((user, done) => {
   });
 });
 
-app.use(express.static('public'));
-
 passport.use(new LocalStrategy((username, password, done) => {
   return new User({ username: username }).fetch()
   .then(user => {
@@ -126,7 +124,6 @@ app.post('/register', (req, res) => {
       .save()
       .then(user => {
         user = user.toJSON();
-        console.log('user', user);
         return res.status(200).json({
           user: {
             email: user.email,

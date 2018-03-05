@@ -6,9 +6,9 @@ class UserStatus extends bookshelf.Model {
 
 
   user() {
-    return this.hasMany('users');
+    return this.hasMany('User');
   }
 
 }
 
-module.exports = UserStatus;
+module.exports = bookshelf.model('UserStatus', UserStatus);

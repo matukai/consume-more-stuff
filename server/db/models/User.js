@@ -5,14 +5,14 @@ class User extends bookshelf.Model {
   get hasTimestamps() {return true}
 
   item() {
-    return this.hasMany('items')
+    return this.hasMany('Item')
   }
 
   userStatus() {
-    return this.hasOne('user_status', 'user_status_id')
+    return this.belongsTo('UserStatus', 'user_status_id')
   }
 
 }
 
 
-module.exports = User;
+module.exports = bookshelf.model('User', User);

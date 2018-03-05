@@ -1,5 +1,5 @@
 const knex = require('../knex');
+const Bookshelf = require('bookshelf')(knex);
+Bookshelf.plugin('registry');
 
-
-
-module.exports = require('bookshelf')(knex);
+module.exports = Bookshelf;

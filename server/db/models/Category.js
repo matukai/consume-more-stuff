@@ -5,10 +5,9 @@ class Category extends bookshelf.Model {
   get tableName() {return 'categories'}
 
   item() {
-    return this.hasMany('items')
+    return this.hasMany('Item')
   }
-
 }
 
 
-module.exports = Category;
+module.exports = bookshelf.model('Category', Category);

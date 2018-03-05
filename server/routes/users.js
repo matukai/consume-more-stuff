@@ -1,17 +1,16 @@
 const express = require('express');
-const User = require('../db/models/User');
 const Item = require('../db/models/Item');
+const User = require('../db/models/User');
 const UserStatus = require('../db/models/UserStatus');
+
 const router = express.Router();
 
-
-
-router.route('/settings/:id')
+router.route('/:id/settings/')
   .get((req, res) => {
     let userId = req.params.id;
 
     return new User({id: userId})
-      .fetchAll() 
+      .fetch({withRelated: ['userStatus']}) 
       .then(user => {
         return res.json(user)
       })
@@ -19,28 +18,30 @@ router.route('/settings/:id')
         return res.json({message: err.message})
       })
   })
-  .put((req, res) => {
-    let userId = req.params.id;
-    let data = { password } = req.body
 
-    return new User({id: userId})
-      .save(data, {
-        patch: false}
-      )
-      .then(user => {
-        return res.json({success: true})
-      })
-      .catch(err => {
-        return res.json({message: err.message})
-      })
-  })
+  ///////route to change user password. to be completed- passport needs to be incorporated///////////
+  // .put((req, res) => {
+  //   let userId = req.params.id;
+  //   let data = { password } = req.body
 
-router.route('/archive/:id')
+  //   return new User({id: userId})
+  //     .save(data, {
+  //       patch: true}
+  //     )
+  //     .then(user => {
+  //       return res.json({success: true})
+  //     })
+  //     .catch(err => {
+  //       return res.json({message: err.message})
+  //     })
+  // })
+
+router.route('/:id/inactive/')
   .put((req, res) => {
     let userId = req.params.id;
     
-    return new UserStatus({user_id: userId})
-      .save({status: 'archive'})
+    return new User({id: userId})
+      .save({user_status_id: 2})
       .then(status => {
         return res.json({success: true})
       })
@@ -52,11 +53,10 @@ router.route('/archive/:id')
 
 router.route('/:id')
   .get((req, res) => {
-    let userId = req.body.id;
-    return new Item({
-        user_id: userId
-      })
-      .fetchAll()
+    let userId = req.params.id;
+    return new Item()
+      .query({where: {user_id: userId}})
+      .fetchAll({withRelated: ['condition', 'category', 'itemStatus']})
       .then(user => {
         return res.json(user)
       })
@@ -66,8 +66,6 @@ router.route('/:id')
         })
       })
   })
-
-// router.route('/logout')--will address logout upon authentication
 
 
 module.exports = router;
