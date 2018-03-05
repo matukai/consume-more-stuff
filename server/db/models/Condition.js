@@ -5,10 +5,9 @@ class Condition extends bookshelf.Model {
   get tableName() {return 'conditions'}
 
   item() {
-    return this.hasMany('items');
+    return this.hasMany('Item');
   }
-
 }
 
 
-module.exports = Condition;
+module.exports = bookshelf.model('Condition', Condition);

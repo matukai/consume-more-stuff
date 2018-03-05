@@ -5,10 +5,9 @@ class ItemStatus extends bookshelf.Model {
   get tableName() {return 'item_status'}
 
   item() {
-    return this.hasMany('items');
+    return this.hasMany('Item');
   }
-
 }
 
 
-module.exports = ItemStatus;
+module.exports = bookshelf.model('ItemStatus', ItemStatus);
