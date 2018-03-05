@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
-import {createItem} from '../../actions';
+import {createItem} from '../../actions/itemActions';
 
 class NewItem extends Component {
 
@@ -102,7 +102,7 @@ class NewItem extends Component {
           <option value="used">Used</option>
           </select>
           <br/>
-          <select 
+          <select
           name="category"
           value={this.state.newItem.category}
           onChange={this.handleItemCategory}>
@@ -123,10 +123,11 @@ class NewItem extends Component {
           value={this.state.newItem.dimensions}
           onChange={this.handleItemDimensions}/>
           <br/>
-          <textarea name="notes" value={this.state.newItem.notes} onChange={this.handleItemNotes} 
+          <textarea name="notes" placeholder="notes" value={this.state.newItem.notes} onChange={this.handleItemNotes} 
           id="" cols="30" rows="10">Notes: </textarea>
           <br/>
           <input type="submit"/>
+          
         </form>
       </div>
     )
