@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import Item from '../../components/Item';
+import {loadItems} from '../../actions/itemActions';
 
 
 class ItemList extends Component {
@@ -11,29 +12,27 @@ class ItemList extends Component {
     }
   }
 
-
+  componentDidMount() {
+    this.props.loadItems()
+  }
 
   render() {
     return (
       <div className={this.props.category}>
-        {this.props.items.filter((element) => {
-          return element.category === this.props.category
-        }).map((element,idx) => {
+        {this.props.items.map((element,idx) => {
           return (
-            <Item
-            key={idx}
-            id={element.id}
+            <Item 
             name={element.name}
             price={element.price}
             model={element.model}
-            condition={element.condition}
-            category={element.category}
             dimensions={element.dimensions}
             created_at={element.created_at}
             updated_at={element.updated_at}
-            notes={element.notes}
             image={element.image}
-            />)})}
+            />
+          )
+        })}
+
       </div>
     )
   }
@@ -41,13 +40,15 @@ class ItemList extends Component {
 
     const mapStateToProps = state => {
       return {
-        items: state.items
+        items: state.items.items
       }
     }
 
     const mapDispatchToProps = dispatch => {
       return {
-
+        loadItems: () => {
+          dispatch(loadItems())
+        }
       }
     }
 

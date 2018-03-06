@@ -2,20 +2,38 @@ import axios from 'axios';
 
 
 export const CREATE_ITEM = 'CREATE_ITEM';
-export const LOAD_ITEMS = 'CREATE_ITEM';
-export const EDIT_ITEMS = 'EDIT_ITEM';
+export const LOAD_ITEMS = 'LOAD_ITEMS';
+export const EDIT_ITEM = 'EDIT_ITEM';
 
 
 export const loadItems = () => {
-  return (dispatch) => {
-    axios.get('http://localhost:8080/api/items')
-    .then((response) => {
-      console.log(dispatch(response))
-    }).catch((err) => {
-      console.log(err)
-    })
+  return dispatch => {
+      return axios.get(`/api/items`)
+      .then(data => {
+        //console.log('LOAD ITEMS',data.data)
+        dispatch({
+          type: LOAD_ITEMS,
+          items: data.data
+        })
+      })
+      .catch(err => {
+        console.log('err', err)
+      })
   }
 }
+
+
+// export const loadItem = (itemNum) => {
+//   const id = 1
+//   return (dispatch) => {
+//     axios.get(`http://localhost:8080/api/items/${id}`)
+//     .then((response) => {
+//       console.log(dispatch(response))
+//     }).catch((err) => {
+//       console.log(err)
+//     })
+//   }
+// }
 
 
 export const createItem = (newItem, redirectCallback) => {
