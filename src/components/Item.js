@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import { Redirect, withRouter } from 'react-router-dom';
 import { loadCards } from '../actions/itemActions'
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+
+
 
 const Item = ({
   id,
@@ -17,8 +20,9 @@ const Item = ({
   condition_id,
   item_status_id,
   image }) => {
-  return (
-    <div className="item">
+    return (
+      
+      <div className="item">
       <h1>{name}</h1>
         <ul>
         { name && <li>Name: {name}</li> }
