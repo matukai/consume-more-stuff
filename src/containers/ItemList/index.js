@@ -22,6 +22,8 @@ class ItemList extends Component {
         {this.props.items.map((element,idx) => {
           return (
             <Item 
+            key={idx}
+            id={element.id}
             name={element.name}
             price={element.price}
             model={element.model}
