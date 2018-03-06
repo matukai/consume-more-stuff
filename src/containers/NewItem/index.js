@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
+import { withRouter} from 'react-router-dom';
 import {createItem} from '../../actions/itemActions';
 
 class NewItem extends Component {
@@ -19,53 +20,24 @@ class NewItem extends Component {
         notes:''
       }
     }
-
-    this.handleItemName = this.handleItemName.bind(this)
-    this.handleItemImage = this.handleItemImage.bind(this)
-    this.handleItemPrice = this.handleItemPrice.bind(this)
-    this.handleItemCondition = this.handleItemCondition.bind(this)
-    this.handleItemCategory = this.handleItemCategory.bind(this)
-    this.handleItemModel = this.handleItemModel.bind(this)
-    this.handleItemDimensions = this.handleItemDimensions.bind(this)
-    this.handleItemNotes = this.handleItemNotes.bind(this)
+    
+    this.handleInput = this.handleInput.bind(this)
     this.submitHandler = this.submitHandler.bind(this)
+
   }
 
-  handleItemName (event) {
-    this.setState({ newItem: Object.assign({}, this.state.newItem, {name: event.target.value})})
-  }
 
-  handleItemImage (event) {
-    this.setState({ newItem: Object.assign({}, this.state.newItem, {image: event.target.value})})
-  }
-
-  handleItemPrice (event) {
-    this.setState({ newItem: Object.assign({}, this.state.newItem, {price: event.target.value})})
-  }
-
-  handleItemCondition (event) {
-    this.setState({ newItem: Object.assign({}, this.state.newItem, {condition: event.target.value})})
-  }
-
-  handleItemCategory (event) {
-    this.setState({ newItem: Object.assign({}, this.state.newItem, {category: event.target.value})})
-  }
-
-  handleItemModel (event) {
-    this.setState({ newItem: Object.assign({}, this.state.newItem, {model: event.target.value})})
-  }
-
-  handleItemDimensions (event) {
-    this.setState({ newItem: Object.assign({}, this.state.newItem, {dimensions: event.target.value})})
-  }
-
-  handleItemNotes (event) {
-    this.setState({ newItem: Object.assign({}, this.state.newItem, {notes: event.target.value})})
+  handleInput (event) {
+    const { name, value } = event.target
+    this.setState({newItem: Object.assign({}, this.state.newItem, { [name]: value})})
   }
 
   submitHandler (event) {
     event.preventDefault();
-    createItem(this.state.newItem);
+    const history = this.props.history
+    this.props.createItem(this.state.newItem, () => {
+      history.push(`/item/${this.props.newItem.id}`)
+    });
     this.setState({newItem: Object.assign({}, this.state.newItem, {name: '', image: '', price: '',
   condition: '', category: '', model: '', dimensions: '', notes: ''})})
   }
@@ -76,54 +48,60 @@ class NewItem extends Component {
         <form onSubmit={this.submitHandler}>
 
           <input type="text"
-          placeholder="item name"
+          placeholder="name"
+          name="name"
           value={this.state.newItem.name}
-          onChange={this.handleItemName}/>
+          onChange={this.handleInput}/>
           <br/>
           <input type="text"
           placeholder="image"
+          name="image"
           value={this.state.newItem.image}
-          onChange={this.handleItemImage}/>
+          onChange={this.handleInput}/>
           <br/>
           <input type="text"
+          name="price"
           placeholder="price"
+          price="price"
           value={this.state.newItem.price}
-          onChange={this.handleItemPrice}/>
+          onChange={this.handleInput}/>
           <br/>
           <select 
-          name="condition" 
+          name="condition"
           value={this.state.newItem.conditon}
-          onChange={this.handleItemCondition}>
+          onChange={this.handleInput}>
           <option value="">Condition</option>
-          <option value="new">New</option>
-          <option value="good">Good</option>
-          <option value="fair">Fair</option>
-          <option value="worn">Worn</option>
-          <option value="used">Used</option>
+          <option value="5">New</option>
+          <option value="4">Good</option>
+          <option value="3">Fair</option>
+          <option value="2">Worn</option>
+          <option value="1">Used</option>
           </select>
           <br/>
           <select
-          name="category (required) "
+          name="category"
           value={this.state.newItem.category}
-          onChange={this.handleItemCategory}>
+          onChange={this.handleInput}>
           <option value="">Category</option>
-          <option value="vehicles">Vehicles</option>
-          <option value="appliances">Appliances</option>
-          <option value="computers">Computers</option>
-          <option value="furniture">Furniture</option>
+          <option value="1">Vehicles</option>
+          <option value="2">Appliances</option>
+          <option value="3">Computers</option>
+          <option value="4">Furniture</option>
           </select>
           <br/>
           <input type="text"
+          name="model"
           placeholder="model/make"
           value={this.state.newItem.model}
-          onChange={this.handleItemModel}/>
+          onChange={this.handleInput}/>
           <br/>
           <input type="text"
+          name="dimensions"
           placeholder="dimensions"
           value={this.state.newItem.dimensions}
-          onChange={this.handleItemDimensions}/>
+          onChange={this.handleInput}/>
           <br/>
-          <textarea name="notes" placeholder="notes" value={this.state.newItem.notes} onChange={this.handleItemNotes} 
+          <textarea name="notes" placeholder="notes" value={this.state.newItem.notes} onChange={this.handleInput} 
           id="" cols="30" rows="10">Notes: </textarea>
           <br/>
           <input type="submit"/>
@@ -136,14 +114,14 @@ class NewItem extends Component {
 
 const mapStateToProps = state => {
   return {
-
+    newItem: state.items.newItem
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    createItem: (data) => {
-      dispatch(createItem(data))
+    createItem: (data,redirectCallback) => {
+      dispatch(createItem(data, redirectCallback))
     }
   }
 }
