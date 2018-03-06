@@ -6,7 +6,9 @@ CJ notes:
 
 
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Route } from 'react-router-dom';
+
+import RegisterUser from '../containers/RegisterUser';
 
 const Header = () => {
 
@@ -19,6 +21,8 @@ const Header = () => {
         
         <button><Link to="/login">Login</Link></button>
         <button><Link to="/register">Register</Link></button>
+
+        <Route exact path="/register" component={RegisterUser} />
       </div>
 
     {/* Auth View */}
