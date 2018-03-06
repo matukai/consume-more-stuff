@@ -10,6 +10,10 @@ CJ notes:
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import Home from '../containers/Home';
+import RegisterUser from '../containers/RegisterUser';
+import Login from '../containers/Login';
+import UserSetttings from '../containers/UserSettings';
+
 const Main = (props) => {
 
   return (
@@ -18,10 +22,11 @@ const Main = (props) => {
       <Switch>
 
         <Route exact path="/" component={Home} />
-        <Route exact path="/register" />
+        <Route exact path="/register" component={RegisterUser} />
         <Route exact path="/new-item" />
         <Route path="/edit-item" />
-        <Route path="/settings" /> 
+        <Route exact path="/login" component={Login} />
+        <Route path="/settings" component={UserSetttings} /> 
     
       </Switch>
       
