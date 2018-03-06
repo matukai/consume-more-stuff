@@ -27,6 +27,7 @@ class ItemList extends Component {
             name={element.name}
             price={element.price}
             model={element.model}
+            category={element.category}
             dimensions={element.dimensions}
             created_at={element.created_at}
             updated_at={element.updated_at}

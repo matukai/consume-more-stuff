@@ -4,16 +4,18 @@ import { loadCards } from '../actions/itemActions'
 import { connect } from 'react-redux';
 
 const Item = ({
-  id, 
+  id,
   name,
-  price, 
-  model, 
-  condition, 
-  category, 
-  dimensions, 
-  created_at, 
-  updated_at, 
-  notes, 
+  price,
+  model,
+  dimensions,
+  created_at,
+  updated_at,
+  notes,
+  user_id,
+  category_id,
+  condition_id,
+  item_status_id,
   image }) => {
   return (
     <div className="item">
@@ -22,11 +24,14 @@ const Item = ({
         { name && <li>Name: {name}</li> }
         { price && <li>Price: {price}</li> }  
         { model && <li>Model: {model}</li> }
-        { condition && <li>Condition: {condition}</li> }
-        { category && <li>Category: {category}</li> }
         { dimensions && <li>Dimensions: {dimensions}</li> }
         { created_at && <li>Created at: {created_at}</li> }
         { updated_at && <li>Updated at: {updated_at}</li> }
+        { notes && <li>Model: {notes}</li> }
+        { user_id && <li>Model: {user_id}</li> }
+        { category_id && <li>Category: {category_id}</li> }
+        { condition_id && <li>Condition: {condition_id}</li> }
+        { item_status_id && <li>Model: {item_status_id}</li> }
         { image && <li>Image: {image}</li> }
         </ul>
       </div>
