@@ -1,23 +1,36 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { Redirect, withRouter } from 'react-router-dom';
+import { loadCards } from '../actions/itemActions'
+import { connect } from 'react-redux';
 
-export const Item = (props) => {
-  return  (
+const Item = ({
+  id, 
+  name,
+  price, 
+  model, 
+  condition, 
+  category, 
+  dimensions, 
+  created_at, 
+  updated_at, 
+  notes, 
+  image }) => {
+  return (
     <div className="item">
-      <h1>{props.name}</h1>
+      <h1>{name}</h1>
         <ul>
-          <li>Name: {props.name}</li>
-          <li>Price: {props.price}</li>
-          <li>Model: {props.model}</li>
-          <li>Condition: {props.condition}</li>
-          <li>Category: {props.category}</li>
-          <li>Dimensions: {props.dimensions}</li>
-          <li>Created at: {props.created_at}</li>
-          <li>Updated at: {props.updated_at}</li>
-          <li>Image: {props.image}</li>
+        { name && <li>Name: {name}</li> }
+        { price && <li>Price: {price}</li> }  
+        { model && <li>Model: {model}</li> }
+        { condition && <li>Condition: {condition}</li> }
+        { category && <li>Category: {category}</li> }
+        { dimensions && <li>Dimensions: {dimensions}</li> }
+        { created_at && <li>Created at: {created_at}</li> }
+        { updated_at && <li>Updated at: {updated_at}</li> }
+        { image && <li>Image: {image}</li> }
         </ul>
       </div>
   )
 }
 
-
-export default Item;
+export default Item
