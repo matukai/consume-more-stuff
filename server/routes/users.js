@@ -19,23 +19,6 @@ router.route('/:id/settings/')
       })
   })
 
-  ///////route to change user password. to be completed- passport needs to be incorporated///////////
-  // .put((req, res) => {
-  //   let userId = req.params.id;
-  //   let data = { password } = req.body
-
-  //   return new User({id: userId})
-  //     .save(data, {
-  //       patch: true}
-  //     )
-  //     .then(user => {
-  //       return res.json({success: true})
-  //     })
-  //     .catch(err => {
-  //       return res.json({message: err.message})
-  //     })
-  // })
-
 router.route('/:id/inactive/')
   .put((req, res) => {
     let userId = req.params.id;
