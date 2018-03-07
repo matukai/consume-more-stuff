@@ -1,10 +1,4 @@
-import React, { Component } from 'react';
-import { Redirect, withRouter } from 'react-router-dom';
-import { loadCards } from '../actions/itemActions'
-import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { Switch, Route } from 'react-router-dom';
-import { SingleItem } from '../components/SingleItem';
+import React from 'react';
 
 const Item = ({
   id,
@@ -22,7 +16,6 @@ const Item = ({
   image }) => {
     return (
       <div className="item">
-      <h1><Link to={`/item/${id}`}  >{name}</Link></h1>
         <ul>
         { name && <li>Name: {name}</li> }
         { price && <li>Price: {price}</li> }  

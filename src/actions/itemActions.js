@@ -22,9 +22,11 @@ export const loadItems = () => {
 }
 
 export const loadSingleItem = (id) => {
+  //console.log('ITEM ACTION',id)
   return (dispatch) => {
     return axios.get(`/api/items/${id}`)
     .then(data => {
+      //console.log('loadSingleItem',data)
       dispatch({
         type: LOAD_SINGLE_ITEM,
         item: data.data

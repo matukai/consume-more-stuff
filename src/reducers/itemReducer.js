@@ -1,4 +1,4 @@
-import { LOAD_ITEMS , CREATE_ITEM, GET_CAT } from '../actions/itemActions';
+import { LOAD_ITEMS , CREATE_ITEM, GET_CAT, LOAD_SINGLE_ITEM } from '../actions/itemActions';
 
 const initialState = {
   items: []
@@ -16,6 +16,8 @@ export default (state = initialState, action) => {
     case GET_CAT:
      return {...state, categories: action.categories}
 
+    case LOAD_SINGLE_ITEM:
+      return {...state, item: action.item}
 
     default:
       return state;
