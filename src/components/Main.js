@@ -10,9 +10,11 @@ CJ notes:
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import Home from '../containers/Home';
+import RegisterUser from '../containers/RegisterUser';
+import Login from '../containers/Login';
+import UserSetttings from '../containers/UserSettings';
 import NewItem from '../containers/NewItem';
 import EditItem from '../containers/EditItem';
-
 
 const Main = (props) => {
 
@@ -22,10 +24,11 @@ const Main = (props) => {
       <Switch>
 
         <Route exact path="/" component={Home} />
-        <Route exact path="/register" />
+        <Route exact path="/register" component={RegisterUser} />
         <Route exact path="/new-item" component={NewItem} />
         <Route path="/edit-item" component={EditItem}/>
-        <Route path="/settings" /> 
+        <Route exact path="/login" component={Login} />
+        <Route path="/settings" component={UserSetttings} /> 
     
       </Switch>
       
@@ -33,6 +36,4 @@ const Main = (props) => {
   ) 
 }
 
-
-
-export default Main
+export default Main;

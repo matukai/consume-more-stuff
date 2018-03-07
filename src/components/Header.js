@@ -18,11 +18,8 @@ const Header = () => {
 
       {/* UnAuth */}
       <div className="unauth-header-view"> SEARCH BAR...
-        
         <button><Link to="/login">Login</Link></button>
         <button><Link to="/register">Register</Link></button>
-
-        <Route exact path="/register" component={RegisterUser} />
       </div>
 
     {/* Auth View */}
