@@ -12,23 +12,32 @@ import RegisterUser from '../containers/RegisterUser';
 
 const Header = () => {
 
-  return (
-    <div className="header-bar">
+  const userInfo = JSON.parse(localStorage.getItem('user'));
+
+  if (!userInfo) {
+    return (
+      <div className="header-bar">
       <div className="logo">LOGO</div>
 
-      {/* UnAuth */}
       <div className="unauth-header-view"> SEARCH BAR...
         <button><Link to="/login">Login</Link></button>
         <button><Link to="/register">Register</Link></button>
       </div>
+    </div>
+    )
+  } else {
+    return (
+    <div className="header-bar">
+    <div className="logo">LOGO</div>
 
-    {/* Auth View */}
-      <div className="auth-header-view">Hello, USERNAME!
-        {/* <div className="welcome-auth-user">Hello, { username }!</div> */}
+    <div className="auth-header-view"> SEARCH BAR...</div>
+
+        <div className="welcome-auth-user">Hello, {userInfo.username}!
         <button><Link to="/logout">Logout</Link></button>
       </div>
     </div>
-  )
+    )
+  }
 }
 
 export default Header
