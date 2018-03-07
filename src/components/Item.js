@@ -9,10 +9,10 @@ const Item = ({
   created_at,
   updated_at,
   notes,
-  user_id,
-  category_id,
-  condition_id,
-  item_status_id,
+  user,
+  category,
+  condition,
+  itemStatus,
   image }) => {
     return (
       <div className="item">
@@ -23,15 +23,15 @@ const Item = ({
         { dimensions && <li>Dimensions: {dimensions}</li> }
         { created_at && <li>Created at: {created_at}</li> }
         { updated_at && <li>Updated at: {updated_at}</li> }
-        { notes && <li>Model: {notes}</li> }
-        { user_id && <li>Model: {user_id}</li> }
-        { category_id && <li>Category: {category_id}</li> }
-        { condition_id && <li>Condition: {condition_id}</li> }
-        { item_status_id && <li>Model: {item_status_id}</li> }
+        { user && <li>User: {user.username}</li> }
+        { category && <li>Category: {category.category}</li> }
+        { condition && <li>Condition: {condition.condition}</li> }
+        { itemStatus && <li>Status: {itemStatus.status}</li> }
+        { notes && <li>Notes: {notes}</li> }
         { image && <li>Image: {image}</li> }
         </ul>
       </div>
   )
 }
 
-export default Item
+export default Item;

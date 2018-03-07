@@ -17,7 +17,6 @@ export default (state = initialState, action) => {
      return {...state, categories: action.categories}
 
     case LOAD_SINGLE_ITEM:
-    //console.log(action.item.category.category)
       return {...state, item: action.item}
 
     default:
