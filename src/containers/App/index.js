@@ -3,6 +3,7 @@ import axios from 'axios';
 import {connect} from 'react-redux';
 
 
+import { getCategory } from '../../actions/itemActions';
 import Header from '../../components/Header';
 import Nav from '../../components/NavBar';
 import Main from '../../components/Main';
@@ -18,6 +19,17 @@ import reducers from '../../reducers/itemReducer';
 // })
 
 class App extends Component {
+  // constructor (props) {
+  //   super (props);
+  //   this.state = {
+  //     categories: []
+  //   }
+  // }
+
+  // componentWillMount() {
+  //   this.props.getCategory()
+  // }
+
   render() {
     return (
       <div className="App">

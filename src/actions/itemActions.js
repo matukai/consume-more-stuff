@@ -66,20 +66,19 @@ export const createItem = (newItem, redirectCallback) => {
   }
 
 
-
-
 export const editItem = (item) => {
 
 }
 
 export const getCategory = (id) => {
+  console.log('action', id)
   return (dispatch) => {
-    axios.get(`/api/categories/${id}`)
+    axios.get(`/api/items/categories/${id}`)
     .then(result => {
-      console.log('getcategory', result)
+      console.log('getcategory', result.data)
       dispatch({
         type: GET_CAT,
-        categories: result
+        categories: result.data
       })
     })
     .catch((err) => {

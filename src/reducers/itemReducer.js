@@ -1,7 +1,8 @@
 import { LOAD_ITEMS , CREATE_ITEM, GET_CAT } from '../actions/itemActions';
 
 const initialState = {
-  items: []
+  items: [],
+  categories: []
 };
 
 export default (state = initialState, action) => {
@@ -12,11 +13,12 @@ export default (state = initialState, action) => {
       return {...state, newItem: action.item}
 
     case LOAD_ITEMS:
-      console.log(action.items);
+      console.log('loadreducer', action.items);
       return {...state, items: action.items}
     
     case GET_CAT:
-     return {...state, categories: action.categories}
+      console.log('categoryreducer', action.categories.category)
+      return {...state, categories: action.categories}
 
 
     default:

@@ -12,7 +12,7 @@ import Categories from '../components/Categories';
 import NoMatch from '../components/NoMatch';
 
 const Main = (props) => {
-// const catId = this.props.match.params.id;
+
   return (
     <main className="page-content">
 
@@ -21,10 +21,9 @@ const Main = (props) => {
         <Route path="/items" component={ ItemList } />
         <Route exact path="/new-item" component={ NewItem } />
         <Route path="/edit-item" component={ EditItem }/>
-        <Route path="/categories" component={ Categories } />
+        {/* <Route path="/categories" component={ Categories } /> */}
         <Route exact path="/categories/:id" component={ Categories } />
         
-
         <Route exact path="/register" component={ RegisterUser } />
         <Route exact path="/login" component={ Login } />
         <Route path="/settings" component={ UserSetttings } /> 

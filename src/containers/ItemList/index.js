@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
 
 import Item from '../../components/Item';
-import {loadItems} from '../../actions/itemActions';
+// import {loadItems} from '../../actions/itemActions';
 
 
 const ItemList = (props) => {

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link, Route, withRouter } from 'react-router-dom';
 
-import { loadItems, getCategory } from '../actions/itemActions';
+import { getCategory } from '../actions/itemActions';
 import ItemList from '../containers/ItemList';
 
 // import Item from '../components/Item';
@@ -10,36 +10,46 @@ import ItemList from '../containers/ItemList';
 class Categories extends Component {
   constructor(props) {
     super(props)
-      this.state = {
-        categories: []
-      }
+    this.state = {
+      categories: []
+    }
+  
   }
 
-  componentDidMount() {
-    console.log('componentdidmount', this.props)
+  componentWillMount() {
+    const catId = this.props.match.params.id
+    console.log('componentdidmount', catId)
+    this.props.getCategory(catId)
   }
   
   render() {
+    console.log('render props', this.props.items)
+    const categories = this.props.items || {}
+
     const catId = this.props.match.params.id
     return (
-      <div className="bitchtits">
-        <div className="item-category">{ this.props.category }</div>
-        <ItemList items={ this.props.items} filter={"category"} value={ catId }/>  
+
+      <div className="categories"> categories
+        {/* <ItemList {...items} /> */}
+        {/* <div className="item-category">{ }</div> */}
+        {/* <ItemList items={ itemsArr } filter={"category"} value={ catId }/>   */}
       </div>
     )
   }
 }  
 
 const mapStateToProps = state => {
+  console.log('mapstate', state.items.categories) 
   return {
-    items: state.items.items
+    categories: state.items.categories
   }
 }
 
 const mapDispatchToProps = dispatch => {
+  console.log('mapdispatch', dispatch)
   return {
-    loadItems: () => {
-      dispatch(loadItems())
+    getCategory: (id) => {
+      dispatch(getCategory(id))
     }
   }
 }

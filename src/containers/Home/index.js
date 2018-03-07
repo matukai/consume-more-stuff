@@ -24,7 +24,6 @@ class Home extends Component {
               <ItemList items={ this.props.items } category={ 2 }/>
             <div className="category-name">Computers</div>
               <ItemList items={ this.props.items } category={ 3 }/>
-    
             <div className="category-name">Furniture</div>
               <ItemList items={ this.props.items } category={ 4 }/>
       </div>

@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
-import { Redirect, withRouter } from 'react-router-dom';
-import { loadCards } from '../actions/itemActions'
-import { connect } from 'react-redux';
+import React from 'react';
+// import { Redirect, withRouter } from 'react-router-dom';
+// import { loadCards } from '../actions/itemActions'
+// import { connect } from 'react-redux';
 
 const Item = ({
   id,
