@@ -1,3 +1,39 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+.App {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+}
+
+.page-container {
+  display: flex;
+  flex-grow: 1;
+  padding: 15px;
+}
+
+.page-container .nav-bar {
+  /* border: 1px solid red; */
+  min-width: 200px;
+  width: 20%;
+  align-items: stretch;
+  padding: 15px 10px 10px 15px;
+}
+.nav-bar a:hover {
+  color: pink;
+}
+
+.page-container .page-content {
+  /* border: 1px solid blue; */
+  align-items: stretch;
+  width: 80%;
+  padding: 15px;
+}
+
 body {
   font-family: 'Montserrat', sans-serif;
   background: bisque;
@@ -32,3 +68,12 @@ button:hover {
   background-color: lightseagreen;
   color: bisque;
   transition: 0.3s ease; }
+
+
+ul {
+  list-style: none;
+}
+
+.category-name {
+  text-transform: uppercase;
+}
