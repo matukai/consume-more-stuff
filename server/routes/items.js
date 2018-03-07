@@ -53,11 +53,12 @@ router.route('/categories/:id')
       })
 
 router.route('/new')
-  .post((req, res) => {
+.post((req, res) => {
     let data = {
       name, price, category_id, condition_id, item_status_id, model, dimensions,
-       notes, user_id, image
+       notes, image
     } = req.body;
+    data.user_id = req.user.id
     return new Item(data)
       .save()
       .then(item => {
@@ -72,6 +73,7 @@ router.route('/new')
 
 router.route('/:id')
   .get((req, res) => {
+
     let itemId = req.params.id;
 
     return new Item({
