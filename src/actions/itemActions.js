@@ -4,13 +4,12 @@ export const CREATE_ITEM = 'CREATE_ITEM';
 export const LOAD_ITEMS = 'LOAD_ITEMS';
 export const EDIT_ITEM = 'EDIT_ITEM';
 export const GET_CAT = 'GET_CAT';
-
+export const LOAD_SINGLE_ITEM = 'LOAD_SINGLE_ITEM';
 
 export const loadItems = () => {
   return dispatch => {
       return axios.get(`/api/items`)
       .then(data => {
-        console.log('LOAD ITEMS', data.data)
         dispatch({
           type: LOAD_ITEMS,
           items: data.data
@@ -22,22 +21,21 @@ export const loadItems = () => {
   }
 }
 
-
-// export const loadItem = (itemNum) => {
-//   const id = 1
-//   return (dispatch) => {
-//     axios.get(`http://localhost:8080/api/items/${id}`)
-//     .then((response) => {
-//       console.log(dispatch(response))
-//     }).catch((err) => {
-//       console.log(err)
-//     })
-//   }
-// }
-
+export const loadSingleItem = (id) => {
+  return (dispatch) => {
+    return axios.get(`/api/items/${id}`)
+    .then(data => {
+      dispatch({
+        type: LOAD_SINGLE_ITEM,
+        item: data.data
+      })
+    }).catch((err) => {
+      console.log(err)
+    })
+  }
+}
 
 export const createItem = (newItem, redirectCallback) => {
-  console.log(newItem)
     return dispatch => {
       return axios.post('/api/items/new', {
         name: newItem.name,
@@ -52,7 +50,6 @@ export const createItem = (newItem, redirectCallback) => {
         notes: newItem.notes
       })
       .then(json => {
-        console.log(json)
           dispatch({
           type: CREATE_ITEM,
           item: json.data

@@ -17,7 +17,6 @@ export default (props) => {
           return element.category_id === props.category;
         })       
         .map((element,idx) => {
-          console.log('eleme', element)
           return (
             <Link to={`/item/${element.id}`} key={idx} >
               <p>{element.name}</p>

@@ -10,6 +10,7 @@ import EditItem from '../containers/EditItem';
 import ItemList from '../containers/ItemList/index';
 import Categories from '../components/Categories';
 import NoMatch from '../components/NoMatch';
+import SingleItem from '../containers/SingleItem';
 
 const Main = (props) => {
 
@@ -20,12 +21,13 @@ const Main = (props) => {
         <Route exact path="/" component={ Home } />
         <Route path="/items" component={ ItemList } />
         <Route exact path="/new-item" component={NewItem} />
-        <Route exact path="/edit-item/:id" component={EditItem} />
+        <Route exact path="/item/edit-item/:id" component={EditItem} />
         <Route path="/categories" component={ Categories } />
         <Route exact path="/register" component={RegisterUser} />
         <Route exact path="/login" component={Login} />
         <Route path="/settings" component={UserSetttings} /> 
-        <Route component={ NoMatch } />
+        <Route path="/item/:id" component={SingleItem} /> 
+        <Route component={ NoMatch }/>
       </Switch>
       
     </main>
