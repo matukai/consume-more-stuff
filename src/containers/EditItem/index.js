@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
-import {editItem} from '../../actions/itemActions';
+//import {editItem} from '../../actions/itemActions';
 
 class EditItem extends Component {
 
@@ -65,7 +65,7 @@ class EditItem extends Component {
 
   submitHandler (event) {
     event.preventDefault();
-    editItem(this.state.editItem);
+    //editItem(this.state.editItem);
     this.setState({editItem: Object.assign({}, this.state.editItem, {name: '', image: '', price: '',
   condition: '', category: '', model: '', dimensions: '', notes: ''})})
   }

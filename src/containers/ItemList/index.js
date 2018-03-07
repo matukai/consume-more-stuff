@@ -2,8 +2,6 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import Item from '../../components/Item';
 import {loadItems} from '../../actions/itemActions';
-import { Link } from 'react-router-dom';
-
 
 class ItemList extends Component {
   constructor (props) {

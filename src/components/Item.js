@@ -3,8 +3,8 @@ import { Redirect, withRouter } from 'react-router-dom';
 import { loadCards } from '../actions/itemActions'
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-
-
+import { Switch, Route } from 'react-router-dom';
+import { SingleItem } from '../components/SingleItem';
 
 const Item = ({
   id,
@@ -21,9 +21,8 @@ const Item = ({
   item_status_id,
   image }) => {
     return (
-      
       <div className="item">
-      <h1>{name}</h1>
+      <h1><Link to={`/item/${id}`}  >{name}</Link></h1>
         <ul>
         { name && <li>Name: {name}</li> }
         { price && <li>Price: {price}</li> }  

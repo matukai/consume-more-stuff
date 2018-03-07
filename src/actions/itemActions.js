@@ -1,16 +1,12 @@
 import axios from 'axios';
 
-
 export const CREATE_ITEM = 'CREATE_ITEM';
 export const LOAD_ITEMS = 'LOAD_ITEMS';
-export const EDIT_ITEM = 'EDIT_ITEM';
-
 
 export const loadItems = () => {
   return dispatch => {
       return axios.get(`/api/items`)
       .then(data => {
-        //console.log('LOAD ITEMS',data.data)
         dispatch({
           type: LOAD_ITEMS,
           items: data.data
@@ -21,7 +17,6 @@ export const loadItems = () => {
       })
   }
 }
-
 
 // export const loadItem = (itemNum) => {
 //   const id = 1
@@ -35,11 +30,9 @@ export const loadItems = () => {
 //   }
 // }
 
-
 export const createItem = (newItem, redirectCallback) => {
-  console.log(newItem)
     return dispatch => {
-      return axios.post('http://localhost:8080/api/items/new', {
+      return axios.post('/api/items/new', {
         name: newItem.name,
         image: newItem.image,
         price: newItem.price,
@@ -52,7 +45,6 @@ export const createItem = (newItem, redirectCallback) => {
         notes: newItem.notes
       })
       .then(json => {
-        console.log(json)
           dispatch({
           type: CREATE_ITEM,
           item: json.data
@@ -64,10 +56,3 @@ export const createItem = (newItem, redirectCallback) => {
       })
     }
   }
-
-
-
-
-export const editItem = (item) => {
-
-}

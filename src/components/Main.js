@@ -26,7 +26,7 @@ const Main = (props) => {
         <Route exact path="/new-item" component={NewItem} />
         <Route path="/edit-item" component={EditItem}/>
         <Route path="/settings" /> 
-    
+
       </Switch>
       
     </main>
