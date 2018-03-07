@@ -3,7 +3,8 @@ import { connect } from 'react-redux';
 import { loadSingleItem } from '../../actions/itemActions';
 import ItemDetail from '../../components/ItemDetail';
 import Item from '../../components/Item';
-
+import EditItem from '../EditItem';
+import { Link } from 'react-router-dom';
 
 class SingleItem extends Component {
   constructor (props) {
@@ -33,9 +34,9 @@ class SingleItem extends Component {
       <div className="detail-view">
         <h2>Item Detail View</h2>
         <ItemDetail item={this.state}/>
-
+        <Link to={`edit-item/${this.state.id}`}>EDIT ITEM</Link>
         {/* <ItemDetail item={this.props}/> */}
-        
+
       </div>
     )
   }

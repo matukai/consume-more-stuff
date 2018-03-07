@@ -21,7 +21,7 @@ const Main = (props) => {
         <Route exact path="/" component={ Home } />
         <Route path="/items" component={ ItemList } />
         <Route exact path="/new-item" component={NewItem} />
-        <Route path="/edit-item" component={EditItem}/>
+        <Route exact path="/item/edit-item/:id" component={EditItem} />
         <Route path="/categories" component={ Categories } />
         <Route exact path="/register" component={RegisterUser} />
         <Route exact path="/login" component={Login} />

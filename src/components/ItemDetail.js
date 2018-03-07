@@ -1,7 +1,7 @@
 import React from 'react';
 
 export const ItemDetail = (props) => {
-  console.log('ITEM DETAIL', props.item)
+  // console.log('ITEM DETAIL', props.item)
   return (
       <div className="item-detail">
 

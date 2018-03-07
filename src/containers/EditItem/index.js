@@ -1,150 +1,174 @@
 import React, { Component } from 'react';
-import {connect} from 'react-redux';
-//import {editItem} from '../../actions/itemActions';
+import { connect } from 'react-redux';
+import { editItem, loadSingleItem } from '../../actions/edit_item';
 
 class EditItem extends Component {
-
   constructor(props) {
-    super(props)
+    super(props);
+    this.state = {name: '', price: '', model: '', dimensions: '',
+    notes: '', category_id: '', condition_id: '', item_status_id: '',
+    image: ''};
 
-    this.state = {
-      editItem: {
-        name: '',
-        image: '',
-        price: '',
-        condition: '',
-        category: '',
-        model: '',
-        dimensions: '',
-        notes:''
-      }
+    this.handleOnChange = this.handleOnChange.bind(this);
+    this.handleOnSelect = this.handleOnSelect.bind(this);
+    this.handleOnSubmit = this.handleOnSubmit.bind(this);
+  }
+
+  componentDidMount(props) {
+  const itemId = this.props.match.params.id;
+    this.props.loadSingleItem(itemId) 
+  }
+
+  componentWillUpdate(nextProps) {
+    if (nextProps.item !== this.props.item) {
+     return this.setState({...nextProps.item})
     }
-
-    this.handleItemName = this.handleItemName.bind(this)
-    this.handleItemImage = this.handleItemImage.bind(this)
-    this.handleItemPrice = this.handleItemPrice.bind(this)
-    this.handleItemCondition = this.handleItemCondition.bind(this)
-    this.handleItemCategory = this.handleItemCategory.bind(this)
-    this.handleItemModel = this.handleItemModel.bind(this)
-    this.handleItemDimensions = this.handleItemDimensions.bind(this)
-    this.handleItemNotes = this.handleItemNotes.bind(this)
-    this.submitHandler = this.submitHandler.bind(this)
   }
 
-  handleItemName (event) {
-    this.setState({ newItem: Object.assign({}, this.state.editItem, {name: event.target.value})})
+  handleOnChange(event) {
+    this.setState({[event.target.name] : event.target.value})
   }
 
-  handleItemImage (event) {
-    this.setState({ editItem: Object.assign({}, this.state.editItem, {image: event.target.value})})
+  handleOnSelect(event) {
+    this.setState({[event.target.name] : parseInt(event.target.value)})
   }
 
-  handleItemPrice (event) {
-    this.setState({ editItem: Object.assign({}, this.state.editItem, {price: event.target.value})})
-  }
-
-  handleItemCondition (event) {
-    this.setState({ editItem: Object.assign({}, this.state.editItem, {condition: event.target.value})})
-  }
-
-  handleItemCategory (event) {
-    this.setState({ editItem: Object.assign({}, this.state.editItem, {category: event.target.value})})
-  }
-
-  handleItemModel (event) {
-    this.setState({ editItem: Object.assign({}, this.state.editItem, {model: event.target.value})})
-  }
-
-  handleItemDimensions (event) {
-    this.setState({ editItem: Object.assign({}, this.state.editItem, {dimensions: event.target.value})})
-  }
-
-  handleItemNotes (event) {
-    this.setState({ editItem: Object.assign({}, this.state.editItem, {notes: event.target.value})})
-  }
-
-  submitHandler (event) {
+  handleOnSubmit(event) {
     event.preventDefault();
-    //editItem(this.state.editItem);
-    this.setState({editItem: Object.assign({}, this.state.editItem, {name: '', image: '', price: '',
-  condition: '', category: '', model: '', dimensions: '', notes: ''})})
+    const history = this.props.history;
+    this.props.editItem(this.state, () => {
+      history.push(`/item/${this.props.match.params.id}`)
+    });
   }
 
   render() {
     return (
-      <div className="new-item-form">
-        <form onSubmit={this.submitHandler}>
+      <div className="edit-item-form">
+        <form onSubmit={this.handleOnSubmit}>
+          <h2>Edit Item</h2>
+          <div className="edit-form-name">
+          <h5>Name</h5>
+            <input type="text"
+              name="name"
+              value={this.state.name}
+              onChange={this.handleOnChange}
+            />
+          </div>
+            <br/>
+          <div className="edit-form-price">
+            <h5>Price</h5>
+            <input type="text"
+              name="price"
+              value={this.state.price}
+              onChange={this.handleOnChange}
+            />
+          </div>
+            <br/>
+          <div className="edit-form-model">
+            <h5>Make/Model</h5>
+            <input type="text"
+              name="model"
+              value={this.state.model}
+              onChange={this.handleOnChange}
+            />
+          </div>
+            <br/>
+          <div className="edit-form-dimensions">
+            <h5>Dimensions</h5>
+            <input type="text"
+              name="dimensions"
+              value={this.state.dimensions}
+              onChange={this.handleOnChange}
+            />
+          </div>
+            <br/>
+          <div className="edit-form-notes">
+            <h5>Notes</h5>
+            <textarea name="notes"
+              value={this.state.notes}
+              onChange={this.handleOnChange}
+              id="" cols="30" row="10"
+            />
+          </div>
+            <br/>
+            <br/>
+          <div className="edit-form-category">
+            <h5>Category</h5>
+            <select
+              name="category_id"
+              value={this.state.category_id}
+              onChange={this.handleOnSelect}>
 
-          <input type="text"
-          placeholder="item name"
-          value={this.state.editItem.name}
-          onChange={this.handleItemName}/>
-          <br/>
-          <input type="text"
-          placeholder="image"
-          value={this.state.editItem.image}
-          onChange={this.handleItemImage}/>
-          <br/>
-          <input type="text"
-          placeholder="price"
-          value={this.state.editItem.price}
-          onChange={this.handleItemPrice}/>
-          <br/>
-          <select 
-          name="condition" 
-          value={this.state.editItem.conditon}
-          onChange={this.handleItemCondition}>
-          <option value="">Condition</option>
-          <option value="new">New</option>
-          <option value="good">Good</option>
-          <option value="fair">Fair</option>
-          <option value="worn">Worn</option>
-          <option value="used">Used</option>
-          </select>
-          <br/>
-          <select
-          name="category"
-          value={this.state.editItem.category}
-          onChange={this.handleItemCategory}>
-          <option value="">Category</option>
-          <option value="vehicles">Vehicles</option>
-          <option value="appliances">Appliances</option>
-          <option value="computers">Computers</option>
-          <option value="furniture">Furniture</option>
-          </select>
-          <br/>
-          <input type="text"
-          placeholder="model/make"
-          value={this.state.editItem.model}
-          onChange={this.handleItemModel}/>
-          <br/>
-          <input type="text"
-          placeholder="dimensions"
-          value={this.state.editItem.dimensions}
-          onChange={this.handleItemDimensions}/>
-          <br/>
-          <textarea name="notes" placeholder="notes" value={this.state.editItem.notes} onChange={this.handleItemNotes} 
-          id="" cols="30" rows="10">Notes: </textarea>
-          <br/>
-          <input type="submit"/>
-          
+              <option value=''>Category</option>
+              <option value="1">Vehicles</option>
+              <option value="2">Appliances</option>
+              <option value="3">Computers</option>
+              <option value="4">Furniture</option>
+            </select>
+          </div>
+            <br/>
+          <div className="edit-from-condition">
+            <h5>Condition</h5>
+            <select
+              name="condition_id"
+              value={this.state.condition_id}
+              onChange={this.handleOnSelect}>
+
+              <option value=''>Condition</option>
+              <option value="1">Used</option>
+              <option value="2">Worn</option>
+              <option value="3">Fair</option>
+              <option value="4">Good</option>
+              <option value="5">New</option>
+            </select>
+          </div>
+            <br/>
+          <div className="edit-form-itemstatus">
+            <h5>Status</h5>
+            <select
+              name="item_status_id"
+              value={this.state.item_status_id}
+              onChange={this.handleOnSelect}>
+
+              <option value=''>Item Status</option>
+              <option value="1">Published</option>
+              <option value="2">Pending</option>
+              <option value="3">Sold</option>
+            </select>
+          </div>
+            <br/>
+          <div className="edit-form-image">
+            <h5>Image</h5>
+            <input type="text"
+              name="image"
+              value={this.state.image}
+              onChange={this.handleOnChange}
+            />
+          </div>
+            <input type="submit" value="Submit"/>
         </form>
       </div>
     )
   }
 }// end NewItem
 
+
 const mapStateToProps = state => {
   return {
-
+    items: state.editItem.items,
+    item: state.editItem.item,
+    editId: state.editItem.editId
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    
+    editItem: function (item, redirectCallback) {
+      dispatch(editItem(item, redirectCallback));
+    },
+    loadSingleItem: function (id) {
+      dispatch(loadSingleItem(id));
+    }
   }
 }
-
-
-export default connect(mapStateToProps,mapDispatchToProps)(EditItem)
+export default connect(mapStateToProps, mapDispatchToProps)(EditItem);
