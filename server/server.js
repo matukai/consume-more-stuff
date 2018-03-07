@@ -16,12 +16,6 @@ const PORT = process.env.PORT || 8080;
 const app = express();
 const saltRounds = 12;
 
-app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  next();
-});
-
 app.use(bodyParser.json());
 app.use(session({
   store: new Redis(),
@@ -36,6 +30,7 @@ app.use(passport.session());
 
 passport.serializeUser((user, done) => {
   console.log('serializing');
+  console.log('user', user);
   return done(null, {
     id: user.id,
     username: user.username
@@ -44,6 +39,7 @@ passport.serializeUser((user, done) => {
 
 passport.deserializeUser((user, done) => {
   console.log('deserializing');
+  console.log('user', user);
   new User({ id: user.id }).fetch()
   .then(user => {
     user = user.toJSON();
@@ -78,7 +74,7 @@ passport.use(new LocalStrategy((username, password, done) => {
   });
 }));
 
-app.post('/login', (req, res, next) => {
+app.post('/api/login', (req, res, next) => {
   passport.authenticate('local', (err, user) => {
     if (err) { return next(err); }
     if (!user) {
@@ -103,14 +99,14 @@ app.post('/login', (req, res, next) => {
   })(req, res, next);
 });
 
-app.get('/logout', (req, res) => {
+app.get('/api/logout', (req, res) => {
   req.logout();
   return res.status(200).json({
     authenticated: false
   });
 });
 
-app.post('/register', (req, res) => {
+app.post('/api/register', (req, res) => {
   bcrypt.genSalt(saltRounds, (err, salt) => {
     if (err) { console.log('err', err); }
     bcrypt.hash(req.body.password, salt, (err, hash) => {
@@ -146,13 +142,79 @@ app.post('/register', (req, res) => {
   });
 });
 
-app.get('/auth-test', auth, (req, res) => {
-  res.json({ message: 'Auth test passed' });
+app.put('/api/users/:id/settings', auth, (req, res) => {
+  let userId = req.params.id;
+  let update = { id, email, username } = req.body.user;
+
+  return new User({ id: userId }).fetch()
+  .then(user => {
+    if (user) {
+      user = user.toJSON();
+    }
+    if (user === null) {
+      return done(null, false, { error: 'Incorrect username or password' });
+    } 
+    else {
+      console.log('user', user);
+      console.log('req.body', req.body);
+      bcrypt.compare(req.body.user.password, user.password)
+      .then(result => {
+        console.log('result', result);
+        if (result) {
+          bcrypt.genSalt(saltRounds, (err, salt) => {
+            if (err) { console.log('err', err); }
+            bcrypt.hash(req.body.user.newPassword, salt, (err, hash) => {
+              if (err) { console.log('err', err); }
+              new User({id: userId})
+              .save({ password: hash, username, email, id }, { patch: true })
+              .then(user => {
+                user = user.toJSON();
+                console.log('user', user);
+                return res.status(200).json({
+                  user: {
+                    email: user.email,
+                    username: user.username,
+                    updated_at: user.updated_at,
+                    created_at: user.created_at,
+                    id: user.id,
+                    password: user.password
+                  },
+                  registered: true,
+                  updatedPassword: true
+                });
+              })
+              .catch(err => {
+                console.log('err', err);
+                return res.status(400).json({
+                  error: 'Unable to change password',
+                  updatedPassword: false
+                });
+              });
+            });
+          });
+        } 
+        else {
+          return res.status(401).json({
+            error: 'Incorrect current password',
+            registered: true,
+            updatedPassword: false
+          });
+        }
+      })
+      .catch(err => {
+        console.log('err', err);
+        return res.status(400).json({
+          error: 'Unable to change password',
+          updatedPassword: false
+        });
+      });
+    }
+  });
 });
 
 app.use('/api/items', itemsRoute);
 app.use('/api/users', usersRoute);
 
 app.listen(PORT, () => {
-  console.log(`Server is listening on ${PORT}`)
-})
+  console.log(`Server is listening on ${PORT}`);
+});

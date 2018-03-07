@@ -2,6 +2,9 @@ import axios from 'axios';
 
 export const CREATE_ITEM = 'CREATE_ITEM';
 export const LOAD_ITEMS = 'LOAD_ITEMS';
+export const EDIT_ITEM = 'EDIT_ITEM';
+export const GET_CAT = 'GET_CAT';
+export const LOAD_SINGLE_ITEM = 'LOAD_SINGLE_ITEM';
 
 export const loadItems = () => {
   return dispatch => {
@@ -18,17 +21,19 @@ export const loadItems = () => {
   }
 }
 
-// export const loadItem = (itemNum) => {
-//   const id = 1
-//   return (dispatch) => {
-//     axios.get(`http://localhost:8080/api/items/${id}`)
-//     .then((response) => {
-//       console.log(dispatch(response))
-//     }).catch((err) => {
-//       console.log(err)
-//     })
-//   }
-// }
+export const loadSingleItem = (id) => {
+  return (dispatch) => {
+    return axios.get(`/api/items/${id}`)
+    .then(data => {
+      dispatch({
+        type: LOAD_SINGLE_ITEM,
+        item: data.data
+      })
+    }).catch((err) => {
+      console.log(err)
+    })
+  }
+}
 
 export const createItem = (newItem, redirectCallback) => {
     return dispatch => {
@@ -56,3 +61,34 @@ export const createItem = (newItem, redirectCallback) => {
       })
     }
   }
+
+
+
+
+export const editItem = (item) => {
+
+}
+
+export const getCategory = (id) => {
+  return (dispatch) => {
+    axios.get(`/api/categories/${id}`)
+    .then(result => {
+      console.log('getcategory', result)
+      dispatch({
+        type: GET_CAT,
+        categories: result
+      })
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+  }
+}
+
+export const getStatus = (id) => {
+
+}
+
+export const getCondition = (id) => {
+
+}
