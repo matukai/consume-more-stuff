@@ -6,14 +6,11 @@ import ItemList from '../ItemList/index';
 class Home extends Component {
   constructor(props){
     super(props)
-
-
   }
 
 
-
-
 render() {
+  
   return (
     <div>
 
@@ -31,9 +28,8 @@ render() {
 }// end Home 
 
 const mapStateToProps = state => {
-  //console.log(state)
   return {
-    
+
   }
 }
 
