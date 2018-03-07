@@ -1,42 +1,49 @@
 import React, {Component} from 'react';
-import {connect} from 'react-redux';
-import ItemList from '../ItemList/index';
+import { connect } from 'react-redux';
 
+import { loadItems } from '../../actions/itemActions';
+import ItemList from '../ItemList/index';
 
 class Home extends Component {
   constructor(props){
-    super(props)
+    super(props);
   }
 
+  componentDidMount() {
+    this.props.loadItems();
+  }
 
-render() {
-  
-  return (
-    <div>
-
-      <ItemList category={'vehicles'}/>
-      <ItemList category={'appliances'}/>
-      <ItemList category={'computers'}/>
-      <ItemList category={'furniture'}/>
-
-    </div>
-  )
+  render() {
+    
+    return (
+      <div className="home-view">
+        <h2>HOME</h2>
+            <div className="category-name">Vehicles</div>
+              <ItemList items={ this.props.items } category={ 1 }/>
+            <div className="category-name">Appliances</div>
+              <ItemList items={ this.props.items } category={ 2 }/>
+            <div className="category-name">Computers</div>
+              <ItemList items={ this.props.items } category={ 3 }/>
+    
+            <div className="category-name">Furniture</div>
+              <ItemList items={ this.props.items } category={ 4 }/>
+      </div>
+    )
+  }
 }
-
-
-
-}// end Home 
 
 const mapStateToProps = state => {
   return {
-
+    items: state.items.items
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-
-  }
+    loadItems: () => {
+      dispatch(loadItems());
+    }
+  };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default (connect(mapStateToProps, mapDispatchToProps)(Home));

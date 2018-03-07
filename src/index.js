@@ -4,6 +4,8 @@ import { createStore, applyMiddleware, compose} from 'redux';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import { BrowserRouter as Router } from 'react-router-dom';
+
+
 import rootReducer from './reducers';
 import './index.css';
 import App from './containers/App';
@@ -15,7 +17,6 @@ const store = createStore(
   rootReducer,
   window.__REDUX_DEVTOOLS_EXTENSION__ ? boundCompose(window.__REDUX_DEVTOOLS_EXTENSION__()) : boundCompose()
 );
-
 
 
 

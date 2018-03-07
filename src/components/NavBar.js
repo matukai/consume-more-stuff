@@ -9,7 +9,7 @@ const Nav = (props) => {
         <li><Link to="/">Home</Link></li>
         {/* Auth view */}
         <div className="auth-nav-bar-view">
-          <li><Link to="/messages">Messages</Link></li>
+          {/* <li><Link to="/messages">Messages</Link></li> */}
           <li><Link to="/settings">Settings</Link></li>
         </div>
         {/* UnAuth view */}
