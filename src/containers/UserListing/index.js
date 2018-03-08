@@ -23,7 +23,7 @@ class UserListing extends Component {
         <h1>HELLO USER</h1>
           <div className="status-pending">
             {/* <ItemList items={this.props.items}/> */}
-            <ItemStatus items={this.props.items}/>
+            <ItemStatus items={this.props.items} itemStats={1}/>
           </div>
 
       </div>
