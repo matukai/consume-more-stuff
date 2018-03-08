@@ -5,7 +5,6 @@ export const LOGIN_USER = 'LOGIN_USER';
 export const EDIT_USER = 'EDIT_USER';
 
 export const registerUser = (user, redirectCallback) => {
-  console.log('user', user);
   return dispatch => {
     return axios.post('/api/register', {
       email: user.email,
@@ -13,7 +12,6 @@ export const registerUser = (user, redirectCallback) => {
       password: user.password
     })
     .then(user => {
-      console.log('user', user.data);
       dispatch({
         type: ADD_USER,
         newUser: user.data
@@ -30,6 +28,26 @@ export const registerUser = (user, redirectCallback) => {
   };
 };
 
+export const logoutUser = (redirectCallback) => {
+  localStorage.clear()
+  return dispatch => {
+    return axios.get('/api/logout')
+    .then(result => {
+      dispatch({
+        type: LOGIN_USER,
+        user: {}
+      });
+      redirectCallback()
+    })
+    .catch(err => {
+      console.log('err', err);
+      return dispatch({
+        type: LOGIN_USER,
+        user: {}
+      });
+    });
+  }
+}
 export const loginUser = (user, redirectCallback) => {
   return dispatch => {
     return axios({

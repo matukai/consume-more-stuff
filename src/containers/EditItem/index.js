@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { editItem, loadSingleItem } from '../../actions/edit_item';
-// import { editItem } from '../../actions/edit_item';
-// import { loadSingleItem } from '../../actions/itemActions';
 
 class EditItem extends Component {
   constructor(props) {

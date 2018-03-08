@@ -15,25 +15,35 @@ class UserListing extends Component {
   }
 
   render() {
+
+   let userListItems1 = <ItemList items={this.props.items} filter={"item_status"} id={ 1 }/>
+   let userListItems2 = <ItemList items={this.props.items} filter={"item_status"} id={ 2 }/>
+   let userListItems3 = <ItemList items={this.props.items} filter={"item_status"} id={ 1 }/>
+
+    if (!this.props.items) {
+      userListItems1 = null;
+      userListItems2 = null;
+      userListItems3 = null;
+    }
+
     return (
       <div>
         <h1>HELLO </h1>
 
           <div className="status-published">
             <h2>PUBLISHED ITEMS: </h2>
-            <ItemList items={this.props.items} filter={"item_status"} id={ 1 }/>
+            {userListItems1}
           </div>
 
           <div className="status-pending">
             <h2>PENDING ITEMS: </h2>
-            <ItemList items={this.props.items} filter={"item_status"} id={ 2 }/>
+            {userListItems2}
           </div>
 
           <div className="status-sold">
             <h2>SOLD ITEMS: </h2>
-            <ItemList items={this.props.items} filter={"item_status"} id={ 3 }/>
+            {userListItems3}
           </div>
-
       </div>
     )
   }
