@@ -3,8 +3,7 @@ import React, { Component } from 'react';
 import Header from '../../components/Header';
 import Nav from '../../components/NavBar';
 import Main from '../../components/Main';
-import '../../styles.css';
-
+import '../../scss/styles.css';
 
 class App extends Component {
   render() {
