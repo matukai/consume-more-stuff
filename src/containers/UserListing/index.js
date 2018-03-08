@@ -19,11 +19,21 @@ class UserListing extends Component {
     console.log(this.props.items)
     return (
       <div>
-
         <h1>HELLO USER</h1>
+
+          <div className="status-published">
+            <h2>PUBLISHED ITEMS: </h2>
+            <ItemStatus items={this.props.items} itemStatus={1}/>
+          </div>
+
           <div className="status-pending">
-            {/* <ItemList items={this.props.items}/> */}
-            <ItemStatus items={this.props.items} itemStats={1}/>
+            <h2>PENDING ITEMS: </h2>
+            <ItemStatus items={this.props.items} itemStatus={2}/>
+          </div>
+
+          <div className="status-sold">
+            <h2>SOLD ITEMS: </h2>
+            <ItemStatus items={this.props.items} itemStatus={3}/>
           </div>
 
       </div>
