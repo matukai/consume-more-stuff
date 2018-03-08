@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { getUserItems } from '../../actions/itemActions';
 import ItemList from '../../containers/ItemList';
+import ItemStatus from '../../components/ItemStatus';
 
 class UserListing extends Component {
   constructor (props) {
@@ -21,7 +22,8 @@ class UserListing extends Component {
 
         <h1>HELLO USER</h1>
           <div className="status-pending">
-            <ItemList items={this.props.items}/>
+            {/* <ItemList items={this.props.items}/> */}
+            <ItemStatus items={this.props.items}/>
           </div>
 
       </div>
