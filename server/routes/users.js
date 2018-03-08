@@ -39,7 +39,7 @@ router.route('/:id')
     let userId = req.params.id;
     return new Item()
       .query({where: {user_id: userId}})
-      .fetchAll({withRelated: ['condition', 'category', 'itemStatus']})
+      .fetchAll({withRelated: ['user','condition', 'category', 'itemStatus']})
       .then(user => {
         return res.json(user)
       })

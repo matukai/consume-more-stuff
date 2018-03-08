@@ -1,7 +1,8 @@
-import { LOAD_ITEMS , CREATE_ITEM, GET_CAT, LOAD_SINGLE_ITEM } from '../actions/itemActions';
+import { LOAD_ITEMS , CREATE_ITEM, GET_CAT, LOAD_SINGLE_ITEM, GET_USER_ITEMS} from '../actions/itemActions';
 
 const initialState = {
-  items: []
+  items: [],
+  userItems: []
 };
 
 export default (state = initialState, action) => {
@@ -18,6 +19,10 @@ export default (state = initialState, action) => {
 
     case LOAD_SINGLE_ITEM:
       return {...state, item: action.item}
+
+    case GET_USER_ITEMS:
+      return {...state, items: action.userItems}
+
 
     default:
       return state;

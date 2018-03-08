@@ -18,13 +18,13 @@ class Home extends Component {
       <div className="home-view">
         <h2>HOME</h2>
             <div className="category-name">Vehicles</div>
-              <ItemList items={ this.props.items } category={ 1 }/>
+              <ItemList items={ this.props.items } filter={"category"} id={ 1 }/>
             <div className="category-name">Appliances</div>
-              <ItemList items={ this.props.items } category={ 2 }/>
+              <ItemList items={ this.props.items } filter={"category"} id={ 2 }/>
             <div className="category-name">Computers</div>
-              <ItemList items={ this.props.items } category={ 3 }/>
+              <ItemList items={ this.props.items } filter={"category"} id={ 3 }/>
             <div className="category-name">Furniture</div>
-              <ItemList items={ this.props.items } category={ 4 }/>
+              <ItemList items={ this.props.items } filter={"category"} id={ 4 }/>
       </div>
     )
   }

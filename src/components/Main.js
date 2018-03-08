@@ -11,6 +11,8 @@ import ItemList from '../containers/ItemList/index';
 import Categories from '../components/Categories';
 import NoMatch from '../components/NoMatch';
 import SingleItem from '../containers/SingleItem';
+import UserListing from '../containers/UserListing';
+
 
 const Main = (props) => {
 
@@ -27,6 +29,7 @@ const Main = (props) => {
         <Route exact path="/login" component={Login} />
         <Route path="/settings" component={UserSetttings} /> 
         <Route path="/item/:id" component={SingleItem} /> 
+        <Route path="/users/:id" component={UserListing} />
         <Route component={ NoMatch }/>
       </Switch>
       
