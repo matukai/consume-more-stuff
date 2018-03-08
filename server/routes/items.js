@@ -4,6 +4,7 @@ const Category = require('../db/models/Category');
 const User = require('../db/models/User');
 const Condition = require('../db/models/Condition');
 const ItemStatus = require('../db/models/ItemStatus');
+const auth = require('../isAuthenticated');
 
 const router = express.Router();
 
@@ -53,11 +54,12 @@ router.route('/categories/:id')
       })
 
 router.route('/new')
-  .post((req, res) => {
+.post(auth, (req, res) => {
     let data = {
       name, price, category_id, condition_id, item_status_id, model, dimensions,
-       notes, user_id, image
+       notes, image
     } = req.body;
+    data.user_id = req.user.id
     return new Item(data)
       .save()
       .then(item => {
@@ -72,6 +74,7 @@ router.route('/new')
 
 router.route('/:id')
   .get((req, res) => {
+
     let itemId = req.params.id;
 
     return new Item({

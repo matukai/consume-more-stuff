@@ -21,8 +21,8 @@ export default (state = initialState, action) => {
       return {...state, item: action.item}
 
     case GET_USER_ITEMS:
-    // console.log(action.userItems)
       return {...state, items: action.userItems}
+
 
     default:
       return state;

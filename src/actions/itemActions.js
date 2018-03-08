@@ -7,6 +7,7 @@ export const GET_CAT = 'GET_CAT';
 export const LOAD_SINGLE_ITEM = 'LOAD_SINGLE_ITEM';
 export const GET_USER_ITEMS = 'GET_USER_ITEMS';
 
+
 export const loadItems = () => {
   return dispatch => {
       return axios.get(`/api/items`)
@@ -46,7 +47,6 @@ export const createItem = (newItem, redirectCallback) => {
         category_id: newItem.category,
         item_status_id: 1,
         model: newItem.model,
-        user_id: 1,
         dimensions: newItem.dimensions ,
         notes: newItem.notes
       })
