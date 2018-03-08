@@ -45,7 +45,6 @@ export const createItem = (newItem, redirectCallback) => {
         category_id: newItem.category,
         item_status_id: 1,
         model: newItem.model,
-        user_id: 1,
         dimensions: newItem.dimensions ,
         notes: newItem.notes
       })
