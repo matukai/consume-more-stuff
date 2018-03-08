@@ -3,7 +3,7 @@ import { LOAD_ITEMS , CREATE_ITEM, LOAD_SINGLE_ITEM, GET_USER_ITEMS, GET_CATEGOR
 const initialState = {
   items: [],
   userItems: [],
-  category: []
+  category: {}
 };
 
 export default (state = initialState, action) => {
@@ -22,8 +22,7 @@ export default (state = initialState, action) => {
       return {...state, items: action.userItems}
 
     case GET_CATEGORY:
-    // console.log('REDUCER',action.category.item)
-      return {...state, category: action.category.item}
+      return {...state, category: action.category}
 
     default:
       return state;

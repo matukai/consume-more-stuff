@@ -7,7 +7,6 @@ export const GET_CATEGORY = 'GET_CATEGORY';
 export const LOAD_SINGLE_ITEM = 'LOAD_SINGLE_ITEM';
 export const GET_USER_ITEMS = 'GET_USER_ITEMS';
 
-
 export const loadItems = () => {
   return dispatch => {
       return axios.get(`/api/items`)
@@ -63,19 +62,12 @@ export const createItem = (newItem, redirectCallback) => {
     }
   }
 
-
-
-
-export const editItem = (item) => {
-
-}
-
 export const getCategory = (id) => {
   // console.log(id)
   return (dispatch) => {
     axios.get(`/api/items/categories/${id}`)
     .then(data => {
-      // console.log('GET CATEGORY' , data.data)
+      // console.log('GET' , data.data)
       dispatch({
         type: GET_CATEGORY,
         category: data.data
@@ -87,19 +79,10 @@ export const getCategory = (id) => {
   }
 }
 
-export const getStatus = (id) => {
-
-}
-
-export const getCondition = (id) => {
-
-}
-
 export const getUserItems = (id) => {
   return dispatch => {
     return axios.get(`/api/users/${id}`)
     .then(result => {
-      // console.log(result)
       dispatch({
         type: GET_USER_ITEMS,
         userItems: result.data

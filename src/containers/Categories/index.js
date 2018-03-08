@@ -13,14 +13,24 @@ class Categories extends Component {
     this.props.getCategory(catId)
   }
 
-  render() {
-    console.log('INDEX',this.props.category)
-    return (
-      <div>
-        <h2>Category: </h2>
-        <ItemList items={this.props.category}/>
+  componentWillReceiveProps(nextProps){
+    if(nextProps.match.params.id !== this.props.category){
+      const catId = this.props.match.params.id;
+      this.props.getCategory(catId)
+    }
+  }
 
-      </div>
+  render() {
+    if(this.props.category.item){
+      return (
+        <div>
+          <h2>Category: {this.props.category.category}</h2>
+          <ItemList items={this.props.category.item}/>
+        </div>
+      )
+    }
+    return (
+      <div></div>
     )
   }
 }  
