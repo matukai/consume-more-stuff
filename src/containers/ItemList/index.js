@@ -8,13 +8,14 @@ import {loadItems} from '../../actions/itemActions';
 
 export default (props) => {
 
+  const filter = `${props.filter}_id`;
   const items = props.items;
-
+  
     return (
       <div className="category-list">
 
         {items.filter((element) => {
-          return element.category_id === props.category;
+          return element[filter] === props.id;
         })       
         .map((element,idx) => {
           return (

@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { getUserItems } from '../../actions/itemActions';
 import ItemList from '../../containers/ItemList';
-import ItemStatus from '../../components/ItemStatus';
 
 class UserListing extends Component {
   constructor (props) {
@@ -16,24 +15,23 @@ class UserListing extends Component {
   }
 
   render() {
-    console.log(this.props.items)
     return (
       <div>
-        <h1>HELLO USER</h1>
+        <h1>HELLO </h1>
 
           <div className="status-published">
             <h2>PUBLISHED ITEMS: </h2>
-            <ItemStatus items={this.props.items} itemStatus={1}/>
+            <ItemList items={this.props.items} filter={"item_status"} id={ 1 }/>
           </div>
 
           <div className="status-pending">
             <h2>PENDING ITEMS: </h2>
-            <ItemStatus items={this.props.items} itemStatus={2}/>
+            <ItemList items={this.props.items} filter={"item_status"} id={ 2 }/>
           </div>
 
           <div className="status-sold">
             <h2>SOLD ITEMS: </h2>
-            <ItemStatus items={this.props.items} itemStatus={3}/>
+            <ItemList items={this.props.items} filter={"item_status"} id={ 3 }/>
           </div>
 
       </div>
