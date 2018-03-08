@@ -5,6 +5,7 @@ export const LOAD_ITEMS = 'LOAD_ITEMS';
 export const EDIT_ITEM = 'EDIT_ITEM';
 export const GET_CAT = 'GET_CAT';
 export const LOAD_SINGLE_ITEM = 'LOAD_SINGLE_ITEM';
+export const GET_USER_ITEMS = 'GET_USER_ITEMS';
 
 export const loadItems = () => {
   return dispatch => {
@@ -91,4 +92,20 @@ export const getStatus = (id) => {
 
 export const getCondition = (id) => {
 
+}
+
+export const getUserItems = (id) => {
+  return dispatch => {
+    return axios.get(`/api/users/${id}`)
+    .then(result => {
+      // console.log(result)
+      dispatch({
+        type: GET_USER_ITEMS,
+        userItems: result.data
+      })
+    })
+    .catch(err => {
+      console.log(err)
+    })
+  }
 }
