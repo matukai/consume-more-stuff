@@ -90,12 +90,17 @@ router.route('/:id')
         })
       })
   })
-  .put((req, res) => {
+  .put(auth, (req, res) => {
+    if (req.user.id !== req.body.user_id) {
+      console.log('User does not own item')
+      return res.json({message: 'User does not own item'})
+    } else {
+
     let itemId = req.params.id;
 
     let data = {
       name, price, category_id, condition_id, item_status_id, model, dimensions,
-       notes, user_id, image
+       notes, image
     } = req.body;
 
     return new Item({
@@ -112,6 +117,7 @@ router.route('/:id')
           message: err.message
         })
       })
+    }
   })
 
 router.route('/')

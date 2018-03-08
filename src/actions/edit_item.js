@@ -32,7 +32,8 @@ export const editItem = (item, redirectCallback) => {
       category_id: item.category_id,
       condition_id: item.condition_id,
       item_status_id: item.item_status_id,
-      image: item.image
+      image: item.image,
+      user_id: item.user_id
     }
 
     return axios(`${ITEMS_DB}/${body.id}`, {
