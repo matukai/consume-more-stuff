@@ -4,7 +4,7 @@ import { Switch, Route } from 'react-router-dom';
 import Home from '../containers/Home';
 import RegisterUser from '../containers/RegisterUser';
 import Login from '../containers/Login';
-import UserSetttings from '../containers/UserSettings';
+import UserSettings from '../containers/UserSettings';
 import NewItem from '../containers/NewItem';
 import EditItem from '../containers/EditItem';
 import ItemList from '../containers/ItemList/index';
@@ -27,7 +27,7 @@ const Main = (props) => {
         <Route path="/categories" component={ Categories } />
         <Route exact path="/register" component={RegisterUser} />
         <Route exact path="/login" component={Login} />
-        <Route path="/settings" component={UserSetttings} /> 
+        <Route path="/settings" component={UserSettings} /> 
         <Route path="/item/:id" component={SingleItem} /> 
         <Route path="/users/:id" component={UserListing} />
         <Route component={ NoMatch }/>
