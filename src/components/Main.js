@@ -8,7 +8,7 @@ import UserSetttings from '../containers/UserSettings';
 import NewItem from '../containers/NewItem';
 import EditItem from '../containers/EditItem';
 import ItemList from '../containers/ItemList/index';
-import Categories from '../components/Categories';
+import Categories from '../containers/Categories';
 import NoMatch from '../components/NoMatch';
 import SingleItem from '../containers/SingleItem';
 import UserListing from '../containers/UserListing';
@@ -24,7 +24,7 @@ const Main = (props) => {
         <Route path="/items" component={ ItemList } />
         <Route exact path="/new-item" component={NewItem} />
         <Route exact path="/item/edit-item/:id" component={EditItem} />
-        <Route path="/categories" component={ Categories } />
+        <Route path="/categories/:id" component={Categories} />
         <Route exact path="/register" component={RegisterUser} />
         <Route exact path="/login" component={Login} />
         <Route path="/settings" component={UserSetttings} /> 

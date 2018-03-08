@@ -14,10 +14,10 @@ const Nav = (props) => {
         </div>
         {/* UnAuth view */}
         <div className="unauth-nav-bar-view"> 
-          <li><Link to="/vehicles">Vehicles</Link></li>
-          <li><Link to="/appliances">Appliances</Link></li>
-          <li><Link to="/computers">Computers</Link></li>
-          <li><Link to="/furniture">Furniture</Link></li>
+          <li><Link to="/categories/1">Vehicles</Link></li>
+          <li><Link to="/categories/2">Appliances</Link></li>
+          <li><Link to="/categories/3">Computers</Link></li>
+          <li><Link to="/categories/4">Furniture</Link></li>
         </div>
       </ul>
     </div>

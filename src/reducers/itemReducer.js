@@ -1,8 +1,9 @@
-import { LOAD_ITEMS , CREATE_ITEM, GET_CAT, LOAD_SINGLE_ITEM, GET_USER_ITEMS} from '../actions/itemActions';
+import { LOAD_ITEMS , CREATE_ITEM, LOAD_SINGLE_ITEM, GET_USER_ITEMS, GET_CATEGORY } from '../actions/itemActions';
 
 const initialState = {
   items: [],
-  userItems: []
+  userItems: [],
+  category: []
 };
 
 export default (state = initialState, action) => {
@@ -13,9 +14,6 @@ export default (state = initialState, action) => {
 
     case LOAD_ITEMS:
       return {...state, items: action.items}
-    
-    case GET_CAT:
-     return {...state, categories: action.categories}
 
     case LOAD_SINGLE_ITEM:
       return {...state, item: action.item}
@@ -23,6 +21,9 @@ export default (state = initialState, action) => {
     case GET_USER_ITEMS:
       return {...state, items: action.userItems}
 
+    case GET_CATEGORY:
+    // console.log('REDUCER',action.category.item)
+      return {...state, category: action.category.item}
 
     default:
       return state;

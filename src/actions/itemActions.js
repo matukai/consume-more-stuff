@@ -3,7 +3,7 @@ import axios from 'axios';
 export const CREATE_ITEM = 'CREATE_ITEM';
 export const LOAD_ITEMS = 'LOAD_ITEMS';
 export const EDIT_ITEM = 'EDIT_ITEM';
-export const GET_CAT = 'GET_CAT';
+export const GET_CATEGORY = 'GET_CATEGORY';
 export const LOAD_SINGLE_ITEM = 'LOAD_SINGLE_ITEM';
 export const GET_USER_ITEMS = 'GET_USER_ITEMS';
 
@@ -71,13 +71,14 @@ export const editItem = (item) => {
 }
 
 export const getCategory = (id) => {
+  // console.log(id)
   return (dispatch) => {
-    axios.get(`/api/categories/${id}`)
-    .then(result => {
-      console.log('getcategory', result)
+    axios.get(`/api/items/categories/${id}`)
+    .then(data => {
+      // console.log('GET CATEGORY' , data.data)
       dispatch({
-        type: GET_CAT,
-        categories: result
+        type: GET_CATEGORY,
+        category: data.data
       })
     })
     .catch((err) => {
