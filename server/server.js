@@ -215,6 +215,14 @@ app.put('/api/users/:id/settings', auth, (req, res) => {
 app.use('/api/items', itemsRoute);
 app.use('/api/users', usersRoute);
 
+app.get('/*', (req, res)=>{
+  let options = {
+    root: __dirname + '/public'
+  };
+  res.sendFile('index.html', options);
+})
+
+
 app.listen(PORT, () => {
   console.log(`Server is listening on ${PORT}`);
 });
