@@ -22,7 +22,7 @@ const Nav = () => {
           :null           
           }
           {
-            loggedIn ? <li><Link to={`users/${loggedIn.id}`}>My Listings</Link></li>:null           
+            loggedIn ? <li><Link to={`/users/${loggedIn.id}`}>My Listings</Link></li>:null           
           }
         </ul>
       </div>
