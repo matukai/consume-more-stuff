@@ -8,10 +8,10 @@ const Nav = () => {
       <div className="nav-bar">
         <ul>
           <li><Link to="/">Home</Link></li>
-          <li><Link to="/vehicles">Vehicles</Link></li>
-          <li><Link to="/appliances">Appliances</Link></li>
-          <li><Link to="/computers">Computers</Link></li>
-          <li><Link to="/furniture">Furniture</Link></li>
+          <li><Link to="/categories/1">Vehicles</Link></li>
+          <li><Link to="/categories/2">Appliances</Link></li>
+          <li><Link to="/categories/3">Computers</Link></li>
+          <li><Link to="/categories/4">Furniture</Link></li>
           
           {
             loggedIn ? <li><Link to="/new-item">Add New Listing</Link></li> 

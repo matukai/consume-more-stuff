@@ -24,7 +24,6 @@ export default (props) => {
               <p>{element.price}</p>
               <p>{element.image}</p>
             </Link>
-
           )
         })}
 

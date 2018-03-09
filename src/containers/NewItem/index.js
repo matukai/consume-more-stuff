@@ -36,7 +36,6 @@ class NewItem extends Component {
     event.preventDefault();
     const history = this.props.history
     this.props.createItem(this.state.newItem, () => {
-      console.log('history')
       history.push(`/item/${this.props.newItem.id}`)
     });
     this.setState({newItem: Object.assign({}, this.state.newItem, {name: '', image: '', price: '',
