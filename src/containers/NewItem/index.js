@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
 import {createItem} from '../../actions/itemActions';
+import UploadImage from '../ImageUpload';
 
 class NewItem extends Component {
 
@@ -126,6 +127,10 @@ class NewItem extends Component {
             value={this.state.newItem.image}
             onChange={this.handleInput}/>
           </div>
+
+        <div>
+          <UploadImage />
+        </div>
 
           <div className="form-text-area">
             <textarea name="notes" 
