@@ -30,12 +30,11 @@ class SingleItem extends Component {
       } else {
         return true
       }
-      }
+      };
 
     const item = this.props.item;
     const loggedIn = JSON.parse(localStorage.getItem('user'));
     const userId = this.state.user_id;
-    // let authCheck = isAuthorized(loggedIn.id, userId)
  
     if (loggedIn) {
       return (
