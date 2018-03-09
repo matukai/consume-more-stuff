@@ -1,9 +1,20 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+import fontawesome from '@fortawesome/fontawesome';
+import { faRocket, faPlug, faDesktop, faHome, faPlusSquare, faBars, faCog } from '@fortawesome/fontawesome-free-solid';
+
+fontawesome.library.add(faRocket);
+fontawesome.library.add(faPlug);
+fontawesome.library.add(faDesktop);
+fontawesome.library.add(faHome);
+fontawesome.library.add(faPlusSquare);
+fontawesome.library.add(faBars);
+fontawesome.library.add(faCog);
+
+
 export default (props) => {
   const loggedIn = JSON.parse(localStorage.getItem('user'));
-
 
   return (
     <nav className="nav-bar">

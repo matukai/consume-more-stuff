@@ -1,6 +1,22 @@
 // global base styles
+html, body {
+  box-sizing: border-box;
+  margin: 0px;
+  font-size: 16px; 
+  height: 100%;
+}
+
 * {
   font-family: 'Karla', sans-serif;
+  box-sizing: inherit;
+}
+
+#root, .app-container, .page-container {
+  height: 100%;
+}
+
+img {
+  max-width: 100%;
 }
 
 a {

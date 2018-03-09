@@ -11,20 +11,22 @@ class Home extends Component {
   componentDidMount() {
     this.props.loadItems();
   }
-
+ 
   render() {
     
     return (
-      <div className="home-view">
-        <h2>HOME</h2>
-            <div className="category-name">Vehicles</div>
-              <ItemList items={ this.props.items } filter={"category"} id={ 1 }/>
-            <div className="category-name">Appliances</div>
-              <ItemList items={ this.props.items } filter={"category"} id={ 2 }/>
-            <div className="category-name">Computers</div>
-              <ItemList items={ this.props.items } filter={"category"} id={ 3 }/>
-            <div className="category-name">Furniture</div>
-              <ItemList items={ this.props.items } filter={"category"} id={ 4 }/>
+      <div className="main-content">
+        <div className="content-title">
+          <h1>All Items</h1>
+        </div>
+        <div className="category-name">Vehicles</div>
+          <ItemList items={ this.props.items } filter={"category"} id={ 1 }/>
+        <div className="category-name">Appliances</div>
+          <ItemList items={ this.props.items } filter={"category"} id={ 2 }/>
+        <div className="category-name">Computers</div>
+          <ItemList items={ this.props.items } filter={"category"} id={ 3 }/>
+        <div className="category-name">Furniture</div>
+          <ItemList items={ this.props.items } filter={"category"} id={ 4 }/>
       </div>
     )
   }

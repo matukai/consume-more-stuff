@@ -8,12 +8,17 @@ header {
   flex-flow: row nowrap;
   justify-content: space-between;
   align-items: center;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: $white;
 }
 
 .page-container {
   display: flex;
   flex-flow: row nowrap;
   justify-content: flex-start;
+  margin-top: 83px;
 }
 
 .nav-bar {
@@ -26,7 +31,8 @@ header {
 
 .page-content {
   flex-grow: 1;
-  position: relative;
   margin-left: 250px;
   background-color: $background-color;
+  height: 100%;
+  width: 100%;
 }
