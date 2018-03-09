@@ -1,5 +1,9 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const multer = require('multer');
+const uuidv4 = require('uuid/v4');
+const path = require('path');
+
 const passport = require('passport');
 const LocalStrategy = require('passport-local');
 const session = require('express-session');
@@ -11,6 +15,19 @@ const itemsRoute = require('./routes/items');
 
 const User = require('./db/models/User');
 const auth = require('./isAuthenticated');
+
+const storage = multer.diskStorage({
+  destination: (req, file, callback) => {
+    callback(null, './db/uploads');
+  },
+  filename: (req, file, callback) => {
+
+    const newFileName = `${uuidv4()}${path.extname(file.originalname)}`;
+    callback(null, newFileName);
+  },
+});
+
+const upload = multer({ storage });
 
 const PORT = process.env.PORT || 8080;
 const app = express();
@@ -210,6 +227,10 @@ app.put('/api/users/:id/settings', auth, (req, res) => {
       });
     }
   });
+});
+
+app.post('/', upload.single('selectedFile'), (req, res) => {
+  res.send()
 });
 
 app.use('/api/items', itemsRoute);
