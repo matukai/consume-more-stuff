@@ -297,42 +297,92 @@ template {
 [hidden] {
   display: none; }
 
-html, body {
-  margin: 0;
-  padding: 0;
-  font-family: sans-serif; }
+* {
+  font-family: 'Karla', sans-serif; }
 
-body {
-  font-family: 'Montserrat', sans-serif;
-  background: aliceblue;
-  color: #3e4144; }
+a {
+  text-decoration: none; }
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0; }
+
+header {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center; }
+
+.page-container {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start; }
+
+.nav-bar {
+  width: 250px;
+  height: 100vh;
+  background-color: #fff;
+  border-right: 1px solid rgba(213, 213, 214, 0.3);
+  position: fixed; }
+
+.page-content {
+  flex-grow: 1;
+  position: relative;
+  margin-left: 250px;
+  background-color: #f9f9f9; }
 
 .header-bar {
-  display: inline-flex;
+  border-bottom: 1px solid rgba(213, 213, 214, 0.3); }
+
+.logo-container {
+  margin: 16px 50px; }
+  .logo-container h1 {
+    color: #187795;
+    font-size: 1.5em;
+    margin: 0; }
+
+.loggedin-links, .loggedout-links {
+  display: flex;
+  flex-flow: row nowrap;
   justify-content: space-between;
   align-items: center;
-  padding: 15px;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  text-transform: uppercase;
-  background-color: lightcyan;
-  width: 100%;
-  border-bottom: 1px solid #E5E5E5; }
+  margin: 16px 50px; }
+  .loggedin-links p, .loggedout-links p {
+    margin-right: 20px; }
+  .loggedin-links .register-link, .loggedout-links .register-link {
+    color: #5E6572;
+    margin: 0 20px; }
+  .loggedin-links button, .loggedout-links button {
+    border: none;
+    border-radius: 2px;
+    padding: 5px 10px;
+    background-color: #187795;
+    color: #fff;
+    font-size: 1em; }
 
 .nav-bar {
   display: flex;
-  flex-direction: column;
-  background-color: aquamarine; }
+  justify-content: center; }
+  .nav-bar li {
+    margin: 20px 0px; }
+  .nav-bar h2 {
+    color: #5E6572; }
+  .nav-bar li a {
+    color: #000; }
+  .nav-bar .svg-inline--fa {
+    color: #187795;
+    margin-right: 20px; }
 
 .main-content {
-  background-color: #DDDDF0; }
+  background-color: #f9f9f9; }
 
 .new-item-form {
   box-sizing: border-box;
   max-width: 640px;
   margin: 0 auto;
   padding: 55px;
-  background-color: #F8F8F9;
+  background-color: #f9f9f9;
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
   font: 14px sans-serif;
   text-align: center;

@@ -1,46 +1,32 @@
-html, body {
-  margin: 0;
-  padding: 0;
-  font-family: sans-serif;
-}
+@import '../partials/_variables.scss';
 
-body {
-  font-family: 'Montserrat', sans-serif; 
-  background: aliceblue;
-  color: rgb(62, 65, 68);
-}
+// structure of App
+// header, nav, main
 
-.header-bar {
-  // border: 1px solid red;
-  display: inline-flex;
+header {
+  display: flex;
+  flex-flow: row nowrap;
   justify-content: space-between;
   align-items: center;
-  padding: 15px;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  text-transform: uppercase;
-  background-color: lightcyan;
-  width: 100%;
-  border-bottom: 1px solid #E5E5E5; 
+}
+
+.page-container {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
 }
 
 .nav-bar {
-  display: flex;
-  flex-direction: column;
-  background-color: aquamarine;
-  
+  width: 250px;
+  height: 100vh;
+  background-color: #fff;
+  border-right: 1px solid $border-color;
+  position: fixed;
 }
-// button {
-  // justify-content: flex-start;
-  // font-family: 'Montserrat', sans-serif; 
-  // background-color: lightgoldenrodyellow;
-  // border: 1px solid #24315e;
-  // color: rgb(62, 65, 68);
-  // padding: 5px;
-  // letter-spacing: 1px;
-// }
-// button:hover {
-//   background-color: lightseagreen;
-//   color: bisque;
-//   transition: 0.3s ease;
-// }
+
+.page-content {
+  flex-grow: 1;
+  position: relative;
+  margin-left: 250px;
+  background-color: $background-color;
+}

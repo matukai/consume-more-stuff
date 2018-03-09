@@ -1,3 +1,12 @@
-@import './partials/_reset.scss';
+// vendor
+@import './vendor/_reset.scss';
+
+// partials
+@import './partials/_base.scss';
+
+// components
 @import './components/_app.scss';
+@import './components/_header.scss';
+@import './components/_nav.scss';
 @import './components/_NewItem.scss';
+// @import './components/_EditItem.scss';

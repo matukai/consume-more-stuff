@@ -8,7 +8,7 @@ import '../../scss/styles.css';
 class App extends Component {
   render() {
     return (
-      <div className="App">
+      <div className="app-container">
         <Header />
         <div className="page-container">
           <Nav />
