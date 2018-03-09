@@ -37,12 +37,11 @@ class NewItem extends Component {
     this.setState( { [name] : selectedFile})
   }
 
+  // SelectedFile is the image object
   submitHandler (event) {
     event.preventDefault();
     const { name, selectedFile, price, condition, category, model, dimensions, notes} = this.state;
     let formData = new FormData();
-    console.log(name)
-    console.log(selectedFile)
     formData.append('name', name)
     formData.append('selectedFile', selectedFile)
     formData.append('price', price)
@@ -51,18 +50,13 @@ class NewItem extends Component {
     formData.append('model', model)
     formData.append('dimensions', dimensions)
     formData.append('notes', notes)
-    console.log('FORM DATA',formData)
-    // const history = this.props.history
-    // this.props.createItem(formData, () => {
-    //   history.push(`/item/${this.props.newItem.id}`)
-    // });
-  //   this.setState({newItem: Object.assign({}, this.state.newItem, {name: '', selectedFile: '', price: '',
-  // condition: '', category: '', model: '', dimensions: '', notes: ''})})
+    const history = this.props.history
+    this.props.createItem(formData, () => {
+      history.push(`/item/${this.props.newItem.id}`)
+    });
   }
 
   render() {
-
-    const { selectedFile} = this.state;
 
     return (
       <div className="main-content">

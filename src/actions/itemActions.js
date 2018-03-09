@@ -37,18 +37,17 @@ export const loadSingleItem = (id) => {
 }
 
 export const createItem = (newItem, redirectCallback) => {
-  console.log(newItem)
     return dispatch => {
       return axios.post('/api/items/new', {
-        name: newItem.name,
-        image: newItem.image,
-        price: newItem.price,
-        condition_id: newItem.condition,
-        category_id: newItem.category,
+        name: newItem.get('name'),
+        selectedFile: newItem.selectedFile,
+        price: newItem.get('price'),
+        condition_id: newItem.get('condition_id'),
+        category_id: newItem.get('category_id'),
         item_status_id: 1,
-        model: newItem.model,
-        dimensions: newItem.dimensions ,
-        notes: newItem.notes
+        model: newItem.get('model'),
+        dimensions: newItem.get('dimensions') ,
+        notes: newItem.get('notes')
       })
       .then(json => {
           dispatch({
@@ -64,11 +63,9 @@ export const createItem = (newItem, redirectCallback) => {
   }
 
 export const getCategory = (id) => {
-  // console.log(id)
   return (dispatch) => {
     axios.get(`/api/items/categories/${id}`)
     .then(data => {
-      // console.log('GET' , data.data)
       dispatch({
         type: GET_CATEGORY,
         category: data.data

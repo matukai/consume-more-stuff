@@ -57,7 +57,7 @@ router.route('/categories/:id')
 
 router.route('/new')
 .post(auth, (req, res) => {
-  
+  console.log('reqbod', req.body.selectedFile)
     let data = {
       name, price, category_id, condition_id, item_status_id, model, dimensions,
        notes
@@ -66,8 +66,6 @@ router.route('/new')
     return new Item(data)
       .save()
       .then(item => {
-//
-
         return res.json(item)
       })
       .catch(err => {
@@ -76,7 +74,7 @@ router.route('/new')
         })
       })
   })
-//.set update imag
+//.set update image
 router.route('/:id')
   .get((req, res) => {
 

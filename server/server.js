@@ -1,5 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+
+//image upload
 const multer = require('multer');
 const uuidv4 = require('uuid/v4');
 const path = require('path');
@@ -16,6 +18,7 @@ const itemsRoute = require('./routes/items');
 const User = require('./db/models/User');
 const auth = require('./isAuthenticated');
 
+//multer destination for where images will be stored locally
 const storage = multer.diskStorage({
   destination: (req, file, callback) => {
     callback(null, path.join(__dirname, '..' , 'public/uploads'));
@@ -26,7 +29,6 @@ const storage = multer.diskStorage({
     callback(null, newFileName);
   },
 });
-
 const upload = multer({ storage });
 
 const PORT = process.env.PORT || 8080;
@@ -34,6 +36,7 @@ const app = express();
 const saltRounds = 12;
 
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: false}));
 app.use(session({
   store: new Redis(),
   secret: 'keyboard cat',
@@ -229,7 +232,7 @@ app.put('/api/users/:id/settings', auth, (req, res) => {
   });
 });
 
-
+//image post route
 app.post('/', upload.single('selectedFile'), (req, res) => {
   console.log('IMAGE', req)
   res.send()
