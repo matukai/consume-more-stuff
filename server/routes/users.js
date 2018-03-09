@@ -2,12 +2,18 @@ const express = require('express');
 const Item = require('../db/models/Item');
 const User = require('../db/models/User');
 const UserStatus = require('../db/models/UserStatus');
+const authenticate = require('../isAuthenticated');
+const authorize = require('../isAuthorized');
 
 const router = express.Router();
 
 router.route('/:id/settings/')
-  .get((req, res) => {
+  .get(authenticate, (req, res) => {
     let userId = req.params.id;
+
+    if (req.user.id !== userId) {
+      return res.json({message: 'Unauthorized'})
+    } else {
 
     return new User({id: userId})
       .fetch({withRelated: ['userStatus']}) 
@@ -17,12 +23,17 @@ router.route('/:id/settings/')
       .catch(err => {
         return res.json({message: err.message})
       })
+    }
   })
 
 router.route('/:id/inactive/')
-  .put((req, res) => {
+  .put(authenticate, (req, res) => {
     let userId = req.params.id;
     
+    if (!authorize(req.user.id, userId)) {
+      return res.json('User not authorized')
+    } else {
+
     return new User({id: userId})
       .save({user_status_id: 2})
       .then(status => {
@@ -31,12 +42,16 @@ router.route('/:id/inactive/')
       .catch(err => {
         return res.json({message: err.message})
       })
+    }
   })
 
-
 router.route('/:id')
-  .get((req, res) => {
+  .get(authenticate, (req, res) => {
     let userId = req.params.id;
+    
+    if (!authorize(req.user.id, userId)) {
+      return false
+    } else {
     return new Item()
       .query({where: {user_id: userId}})
       .fetchAll({withRelated: ['user','condition', 'category', 'itemStatus']})
@@ -48,7 +63,7 @@ router.route('/:id')
           message: err.message
         })
       })
+    }
   })
-
 
 module.exports = router;

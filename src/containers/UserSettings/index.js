@@ -9,13 +9,14 @@ class UserSettings extends Component {
     super(props);
 
     const user = JSON.parse(localStorage.getItem('user'));
-
+    if (user !== null) {
     this.state = {
       email: user.email,
       username: user.username,
       password: '',
       newPassword: '',
       id: user.id
+    }
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -39,6 +40,7 @@ class UserSettings extends Component {
   }
 
   render() {
+
     return (
       <div className="user-settings-form">
         <header><h1>User Settings</h1></header>

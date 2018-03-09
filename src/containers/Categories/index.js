@@ -14,9 +14,9 @@ class Categories extends Component {
   }
 
   componentWillReceiveProps(nextProps){
-    if(nextProps.match.params.id !== this.props.category){
+    if(this.props.match.params.id !== nextProps.match.params.id){
       const catId = this.props.match.params.id;
-      this.props.getCategory(catId)
+      this.props.getCategory(nextProps.match.params.id)
     }
   }
 
