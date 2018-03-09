@@ -18,7 +18,7 @@ class UserListing extends Component {
 
    let userListItems1 = <ItemList items={this.props.items} filter={"item_status"} id={ 1 }/>
    let userListItems2 = <ItemList items={this.props.items} filter={"item_status"} id={ 2 }/>
-   let userListItems3 = <ItemList items={this.props.items} filter={"item_status"} id={ 1 }/>
+   let userListItems3 = <ItemList items={this.props.items} filter={"item_status"} id={ 3 }/>
 
     if (!this.props.items) {
       userListItems1 = null;
