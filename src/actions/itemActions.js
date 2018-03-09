@@ -37,6 +37,7 @@ export const loadSingleItem = (id) => {
 }
 
 export const createItem = (newItem, redirectCallback) => {
+  console.log(newItem)
     return dispatch => {
       return axios.post('/api/items/new', {
         name: newItem.name,

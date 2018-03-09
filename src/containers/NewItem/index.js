@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
 import {createItem} from '../../actions/itemActions';
-import UploadImage from '../ImageUpload';
+import ImageUpload from '../ImageUpload';
+import axios from 'axios';
 
 class NewItem extends Component {
 
@@ -10,55 +11,73 @@ class NewItem extends Component {
     super(props)
 
     this.state = {
-      newItem: {
         name: '',
-        image: '',
+        selectedFile: '',
         price: '',
         condition: '',
         category: '',
         model: '',
         dimensions: '',
         notes:''
-      }
     }
     
     this.handleInput = this.handleInput.bind(this)
     this.submitHandler = this.submitHandler.bind(this)
-
+    this.handleUpload = this.handleUpload.bind(this)
   }
-
 
   handleInput (event) {
     const { name, value } = event.target
-    this.setState({newItem: Object.assign({}, this.state.newItem, { [name]: value})})
+    this.setState( { [name]: value} )
+  }
+
+  handleUpload (event) {
+    const { name } = event.target
+    const selectedFile = event.target.files[0]
+    this.setState( { [name] : selectedFile})
   }
 
   submitHandler (event) {
     event.preventDefault();
-    const history = this.props.history
-    this.props.createItem(this.state.newItem, () => {
-      history.push(`/item/${this.props.newItem.id}`)
-    });
-    this.setState({newItem: Object.assign({}, this.state.newItem, {name: '', image: '', price: '',
-  condition: '', category: '', model: '', dimensions: '', notes: ''})})
+    const { name, selectedFile, price, condition, category, model, dimensions, notes} = this.state;
+    let formData = new FormData();
+    console.log(name)
+    console.log(selectedFile)
+    formData.append('name', name)
+    formData.append('selectedFile', selectedFile)
+    formData.append('price', price)
+    formData.append('condition', condition)
+    formData.append('category', category)
+    formData.append('model', model)
+    formData.append('dimensions', dimensions)
+    formData.append('notes', notes)
+    console.log('FORM DATA',formData)
+    // const history = this.props.history
+    // this.props.createItem(formData, () => {
+    //   history.push(`/item/${this.props.newItem.id}`)
+    // });
+  //   this.setState({newItem: Object.assign({}, this.state.newItem, {name: '', selectedFile: '', price: '',
+  // condition: '', category: '', model: '', dimensions: '', notes: ''})})
   }
 
   render() {
+
+    const { selectedFile} = this.state;
+
     return (
       <div className="main-content">
-      
+
         <form className="new-item-form" onSubmit={this.submitHandler}>
           <div className="form-title-row">
             <h1>Add a New Item</h1>
           </div>
       
-
           <div className="form-row">
             <span>Item name</span>
             <input type="text"
             placeholder="(required)"
             name="name"
-            value={this.state.newItem.name}
+            value={this.state.name}
             onChange={this.handleInput}/>
           </div>
 
@@ -68,7 +87,7 @@ class NewItem extends Component {
             name="price"
             placeholder="(required)"
             price="price"
-            value={this.state.newItem.price}
+            value={this.state.price}
             onChange={this.handleInput}/>
           </div>
 
@@ -76,7 +95,7 @@ class NewItem extends Component {
             <span>Condition</span>
             <select 
             name="condition"
-            value={this.state.newItem.conditon}
+            value={this.state.conditon}
             onChange={this.handleInput}>
               <option value="">Select...</option>
               <option value="5">New</option>
@@ -91,7 +110,7 @@ class NewItem extends Component {
           <span>Category</span>
             <select
               name="category"
-              value={this.state.newItem.category}
+              value={this.state.category}
               onChange={this.handleInput}>
                 <option value="">Select...</option>
                 <option value="1">Vehicles</option>
@@ -106,7 +125,7 @@ class NewItem extends Component {
             <input type="text"
             name="model"
             placeholder="Model / Make"
-            value={this.state.newItem.model}
+            value={this.state.model}
             onChange={this.handleInput}/>
           </div>
 
@@ -115,27 +134,14 @@ class NewItem extends Component {
             <input type="text"
             name="dimensions"
             placeholder="L x W x H"
-            value={this.state.newItem.dimensions}
+            value={this.state.dimensions}
             onChange={this.handleInput}/>
           </div>
-
-          <div className="form-row">
-            <span>Upload image</span>
-            <input type="text"
-            placeholder="Upload image..."
-            name="image"
-            value={this.state.newItem.image}
-            onChange={this.handleInput}/>
-          </div>
-
-        <div>
-          <UploadImage />
-        </div>
 
           <div className="form-text-area">
             <textarea name="notes" 
             placeholder="Notes" 
-            value={this.state.newItem.notes} 
+            value={this.state.notes} 
             onChange={this.handleInput} 
             id="" cols="60" rows="10">
               Notes
@@ -145,7 +151,16 @@ class NewItem extends Component {
           <div className="form-new">
             <button type="submit">Create New Item</button>
           </div>
+
+            <input 
+              type="file"
+              name="selectedFile"
+              onChange={this.handleUpload}
+            />
+
         </form>
+
+
       </div>
     )
   }
@@ -164,8 +179,5 @@ const mapDispatchToProps = dispatch => {
     }
   }
 }
-
-
-
 
 export default connect(mapStateToProps,mapDispatchToProps)(NewItem)

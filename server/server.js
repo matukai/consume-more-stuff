@@ -18,7 +18,7 @@ const auth = require('./isAuthenticated');
 
 const storage = multer.diskStorage({
   destination: (req, file, callback) => {
-    callback(null, './db/uploads');
+    callback(null, path.join(__dirname, '..' , 'public/uploads'));
   },
   filename: (req, file, callback) => {
 
@@ -229,20 +229,22 @@ app.put('/api/users/:id/settings', auth, (req, res) => {
   });
 });
 
+
 app.post('/', upload.single('selectedFile'), (req, res) => {
+  console.log('IMAGE', req)
   res.send()
 });
+
 
 app.use('/api/items', itemsRoute);
 app.use('/api/users', usersRoute);
 
 app.get('/*', (req, res)=>{
   let options = {
-    root: __dirname + '/../public'
+    root: __dirname + '/public'
   };
   res.sendFile('index.html', options);
 })
-
 
 app.listen(PORT, () => {
   console.log(`Server is listening on ${PORT}`);

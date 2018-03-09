@@ -11,20 +11,19 @@ class ImageUpload extends Component {
     };
   }
 
-  onChange = (event) => {
+  onChange = (e) => {
     switch (e.target.name) {
       case 'selectedFile':
-        state.selectedFile = e.target.files[0];
+        this.state.selectedFile = e.target.files[0];
         break;
       default:
-        state[e.target.name] = e.target.value;
+        this.state[e.target.name] = e.target.value;
     }
 
-    this.setState(state);
+    this.setState(this.state);
   }
 
-  onSubmit = (event) => {
-    event.preventDefault();
+  onSubmit = (e) => {
     e.preventDefault();
     const { description, selectedFile } = this.state;
     let formData = new FormData();
@@ -34,38 +33,39 @@ class ImageUpload extends Component {
 
     axios.post('/', formData)
       .then((result) => {
-        // access results...
+        console.log(result)
       });
   }
 
   render() {
     const { description, selectedFile} = this.state;
     return (
-      <form onSubmit={this.onSubmit}>
-        <input 
-          type="text"
-          name="description"
-          value={description}
-          onChange={this.onChange}
-        />
-        <input 
-          type="file"
-          name="selectedFile"
-          onChange={this.onChange}
-        />
-        <button type="submit">serperate</button>
-      </form>
+     <div>
+
+
+        <div>
+          <form onSubmit={this.onSubmit}>
+            <input 
+              type="text"
+              name="description"
+              value={description}
+              onChange={this.onChange}
+            />
+            <input 
+              type="file"
+              name="selectedFile"
+              onChange={this.onChange}
+            />
+            <button type="submit">serperate</button>
+          </form>
+        </div>
+
+
+
+     </div>
     );
   }
 
 }
 
-const mapStateToProps = state => {
-
-}
-
-const mapDispatchToProps = dispatch => {
-
-}
-
-export default connect(mapStateToProps,mapDispatchToProps)(ImageUpload)
+export default ImageUpload

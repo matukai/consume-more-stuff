@@ -53,16 +53,21 @@ router.route('/categories/:id')
           })
       })
 
+
+
 router.route('/new')
 .post(auth, (req, res) => {
+  
     let data = {
       name, price, category_id, condition_id, item_status_id, model, dimensions,
-       notes, image
+       notes
     } = req.body;
     data.user_id = req.user.id
     return new Item(data)
       .save()
       .then(item => {
+//
+
         return res.json(item)
       })
       .catch(err => {
@@ -71,7 +76,7 @@ router.route('/new')
         })
       })
   })
-
+//.set update imag
 router.route('/:id')
   .get((req, res) => {
 
