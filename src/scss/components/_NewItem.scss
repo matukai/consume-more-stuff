@@ -2,7 +2,7 @@
 @import '../partials/_variables.scss';
 
 .main-content {
-  background-color: $main-background-color;
+  background-color: $background-color;
 }
 
 .new-item-form {
@@ -10,11 +10,11 @@
   max-width: 640px;
   margin: 0 auto;
   padding: 55px;
-  background-color: $form-background-color;
+  background-color: $background-color;
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
   font: 14px sans-serif;
   text-align: center;
-  color: $font-heading-color-grey;
+  color: $grey;
 }
 
 h1 {
@@ -85,9 +85,7 @@ textarea {
 }
 
 button {
-  // background: linear-gradient(to right, #6D87F4, #CFAAD4);
     outline: none;  
-  
     flex: 1 1 auto;
     margin: 10px;
     padding: 10px;

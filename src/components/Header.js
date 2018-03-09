@@ -1,43 +1,26 @@
-/* 
-CJ notes: 
-- divs are in place of <Link to="/" /> for testing purposes    
-- pass in a prop that shows if auth = true || false, then show xyz
-*/
-
-
 import React from 'react';
 import { Link, Route } from 'react-router-dom';
 
 import RegisterUser from '../containers/RegisterUser';
 
-const Header = () => {
-
+export default () => {
   const userInfo = JSON.parse(localStorage.getItem('user'));
 
-  if (!userInfo) {
-    return (
-      <div className="header-bar">
-      <div className="logo">LOGO</div>
-
-      <div className="unauth-header-view"> SEARCH BAR...
-        <button><Link to="/login">Login</Link></button>
-        <button><Link to="/register">Register</Link></button>
-      </div>
-    </div>
-    )
-  } else {
-    return (
-    <div className="header-bar">
-    <div className="logo">LOGO</div>
-
-    <div className="auth-header-view"> SEARCH BAR...</div>
-
-        <div className="welcome-auth-user">Hello, {userInfo.username}!
-        <button><Link to="/logout">Logout</Link></button>
-      </div>
-    </div>
-    )
-  }
+  return (
+    <header className="header-bar">
+        <div className="logo-container"><Link to="/"><h1>devlist</h1></Link></div>
+        <div className="search-container"> SEARCH BAR...</div>
+          {userInfo ? (
+            <div className="loggedin-links">
+              <p>Hello, {userInfo.username}</p>
+              <Link to="/logout"><button>Logout</button></Link>
+            </div>
+          ) : (
+            <div className="loggedout-links">
+              <Link to="/register" className="register-link">Register</Link>
+              <Link to="/login"><button>Login</button></Link>
+            </div>
+          )}
+      </header>
+  )
 }
-
-export default Header
