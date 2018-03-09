@@ -217,7 +217,7 @@ app.use('/api/users', usersRoute);
 
 app.get('/*', (req, res)=>{
   let options = {
-    root: __dirname + '../public'
+    root: __dirname + '/../public'
   };
   res.sendFile('index.html', options);
 })
