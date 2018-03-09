@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 export default (props) => {
   const loggedIn = JSON.parse(localStorage.getItem('user'));
 
+
   return (
     <nav className="nav-bar">
       <ul>
@@ -26,3 +27,4 @@ export default (props) => {
     </nav>
   )
 }
+

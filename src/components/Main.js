@@ -31,7 +31,7 @@ const Main = (props) => {
         <Route exact path="/logout" component={Logout} />
         <Route path="/settings" component={UserSettings} /> 
         <Route path="/item/:id" component={SingleItem} /> 
-        <Route path="/users/:id" component={UserListing} />
+        <Route exact path="/users/:id" component={UserListing} />
         <Route component={ NoMatch }/>
       </Switch>
       
