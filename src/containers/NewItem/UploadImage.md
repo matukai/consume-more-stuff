@@ -1,10 +1,11 @@
-
 UploadImage
 
 STEPS FOR IMAGE UPLOAD
 1. create item
 2. save image
 3. update item
+
+note: ImageUpload container not currently being used... everything is in NewItem
 
 -Images uploading to '/public/images' locally 
 however not rendering or stored in db
@@ -35,3 +36,6 @@ src="/upload/items/12"
 
 sorry we could not figure this out in time
 happy hacking :)
+
+blog post we were following for image upload
+https://blog.stvmlbrn.com/2017/12/17/upload-files-using-react-to-node-express-server.html
