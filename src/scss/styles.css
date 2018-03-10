@@ -307,9 +307,6 @@ html, body {
   font-family: 'Karla', sans-serif;
   box-sizing: inherit; }
 
-#root, .app-container, .page-container {
-  height: 100%; }
-
 img {
   max-width: 100%; }
 
@@ -393,6 +390,96 @@ header {
     color: #187795;
     margin-right: 20px; }
 
+.main-content {
+  background-color: #f9f9f9;
+  color: #5E6572;
+  max-width: 900px; }
+
+.item-detail-category-row {
+  display: inline-flex;
+  justify-content: space-between;
+  width: 100%; }
+
+.category-title {
+  padding-left: 30px; }
+
+.page-options-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-right: 15px; }
+
+.page-options {
+  display: flex;
+  align-items: center; }
+
+.icon {
+  padding: 3px; }
+
+.button {
+  border-radius: 10px;
+  background-image: linear-gradient(to right, #2D3142 0%, #187795 51%, #2D3142 100%);
+  background-size: 200% auto;
+  color: #fff;
+  padding: 10px 20px;
+  transition: background-position .5s;
+  -webkit-box-shadow: 13px 25px 59px 0px rgba(0, 0, 0, 0.18);
+  -moz-box-shadow: 13px 25px 59px 0px rgba(0, 0, 0, 0.18);
+  box-shadow: 13px 25px 59px 0px rgba(0, 0, 0, 0.18);
+  outline: none;
+  margin: 20px;
+  cursor: pointer; }
+
+.item-detail-image {
+  height: 200px;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1); }
+
+.item-image-and-detail-container {
+  display: inline-flex;
+  width: 100%; }
+
+.item-detail-container {
+  width: 100%; }
+
+.item-title-row {
+  font-size: 30px;
+  margin-top: 0;
+  color: #2D3142; }
+
+.item-price-row {
+  display: inline-flex;
+  justify-content: space-between;
+  width: 100%; }
+
+.item-price {
+  padding-right: 25px; }
+
+.stars-row {
+  display: flex;
+  align-items: center; }
+
+.item-owner-row {
+  padding: 20px 0 20px; }
+
+.edit-item-link {
+  color: #9FC2CC; }
+
+.item-button-row {
+  display: flex;
+  justify-content: flex-end; }
+
+.add-to-cart-button-container {
+  margin-right: 10px; }
+
+.item-detail-footer {
+  display: inline-flex;
+  justify-content: flex-end;
+  width: 100%; }
+
+.footer-icon-container {
+  display: inline-flex;
+  margin-right: 20px; }
+
 .new-item-form {
   max-width: 640px;
   display: flex;
@@ -452,6 +539,9 @@ textarea {
   color: #fff;
   padding: 10px 20px;
   transition: background-position .5s;
+  -webkit-box-shadow: 13px 25px 59px 0px rgba(0, 0, 0, 0.18);
+  -moz-box-shadow: 13px 25px 59px 0px rgba(0, 0, 0, 0.18);
+  box-shadow: 13px 25px 59px 0px rgba(0, 0, 0, 0.18);
   outline: none;
   margin: 20px;
   cursor: pointer; }
