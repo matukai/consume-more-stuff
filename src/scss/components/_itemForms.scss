@@ -1,0 +1,47 @@
+@import '../partials/_variables.scss';
+
+.new-item-form {
+  max-width: 640px;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  margin: 50px auto;
+  padding: 50px;
+  background-color: $white;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+  text-align: center;
+  color: $grey;
+}
+
+.form-row {
+  text-align: left;
+  margin-bottom: 25px;
+}
+
+.form-row > label {
+  margin-right: 20px;
+}
+
+.form-row input {
+  @include form-input;
+}
+
+input[type=text]:focus {
+  @include form-input-focus;
+}
+select {
+  @include form-select;
+}
+
+textarea {
+  @include form-textarea;
+}
+
+.form-submit {
+  @include submit-button;
+}
+
+.form-submit:hover {
+  @include submit-button-hover;
+}

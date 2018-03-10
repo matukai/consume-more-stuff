@@ -4,7 +4,6 @@ import {withRouter} from 'react-router-dom';
 import {createItem} from '../../actions/itemActions';
 
 class NewItem extends Component {
-
   constructor(props) {
     super(props)
 
@@ -23,9 +22,7 @@ class NewItem extends Component {
     
     this.handleInput = this.handleInput.bind(this)
     this.submitHandler = this.submitHandler.bind(this)
-
   }
-
 
   handleInput (event) {
     const { name, value } = event.target
@@ -34,50 +31,45 @@ class NewItem extends Component {
 
   submitHandler (event) {
     event.preventDefault();
-    const history = this.props.history
+    const history = this.props.history;
     this.props.createItem(this.state.newItem, () => {
       history.push(`/item/${this.props.newItem.id}`)
     });
     this.setState({newItem: Object.assign({}, this.state.newItem, {name: '', image: '', price: '',
-  condition: '', category: '', model: '', dimensions: '', notes: ''})})
+      condition: '', category: '', model: '', dimensions: '', notes: ''})})
   }
 
   render() {
     return (
       <div className="main-content">
+        <div className="content-title">
+          <h1>Add a New Item</h1>
+        </div>
       
         <form className="new-item-form" onSubmit={this.submitHandler}>
-          <div className="form-title-row">
-            <h1>Add a New Item</h1>
-          </div>
-      
-
           <div className="form-row">
-            <span>Item name</span>
             <input type="text"
-            placeholder="(required)"
+            placeholder="Name"
             name="name"
             value={this.state.newItem.name}
             onChange={this.handleInput}/>
           </div>
 
           <div className="form-row">
-            <span>Price</span>
             <input type="text"
             name="price"
-            placeholder="(required)"
+            placeholder="Price"
             price="price"
             value={this.state.newItem.price}
             onChange={this.handleInput}/>
           </div>
 
           <div className="form-row">
-            <span>Condition</span>
             <select 
             name="condition"
             value={this.state.newItem.conditon}
             onChange={this.handleInput}>
-              <option value="">Select...</option>
+              <option value="">Condition...</option>
               <option value="5">New</option>
               <option value="4">Good</option>
               <option value="3">Fair</option>
@@ -87,12 +79,11 @@ class NewItem extends Component {
           </div>
 
           <div className="form-row">
-          <span>Category</span>
             <select
               name="category"
               value={this.state.newItem.category}
               onChange={this.handleInput}>
-                <option value="">Select...</option>
+                <option value="">Category...</option>
                 <option value="1">Vehicles</option>
                 <option value="2">Appliances</option>
                 <option value="3">Computers</option>
@@ -101,7 +92,6 @@ class NewItem extends Component {
           </div>
 
           <div className="form-row">
-          <span>Model / Make</span>
             <input type="text"
             name="model"
             placeholder="Model / Make"
@@ -110,16 +100,14 @@ class NewItem extends Component {
           </div>
 
           <div className="form-row">
-            <span>Dimensions</span>  
             <input type="text"
             name="dimensions"
-            placeholder="L x W x H"
+            placeholder="Dimensions"
             value={this.state.newItem.dimensions}
             onChange={this.handleInput}/>
           </div>
 
           <div className="form-row">
-            <span>Upload image</span>
             <input type="text"
             placeholder="Upload image..."
             name="image"
@@ -132,13 +120,13 @@ class NewItem extends Component {
             placeholder="Notes" 
             value={this.state.newItem.notes} 
             onChange={this.handleInput} 
-            id="" cols="60" rows="10">
+            >
               Notes
             </textarea>
           </div>
 
           <div className="form-new">
-            <button type="submit">Create New Item</button>
+            <button className="form-submit" type="submit">Submit</button>
           </div>
         </form>
       </div>

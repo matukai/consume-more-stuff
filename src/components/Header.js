@@ -9,7 +9,7 @@ export default () => {
   return (
     <header className="header-bar">
         <div className="logo-container"><Link to="/"><h1>devlist</h1></Link></div>
-        <div className="search-container"> SEARCH BAR...</div>
+        {/* <div className="search-container"> SEARCH BAR...</div> */}
           {userInfo ? (
             <div className="loggedin-links">
               <p>Hello, {userInfo.username}</p>

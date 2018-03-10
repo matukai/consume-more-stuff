@@ -1,0 +1,16 @@
+@import '../partials/_variables.scss';
+@import '../partials/_mixins.scss';
+
+.category-list {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+  align-items: center;
+
+  li {
+    height: 400px;
+    width: 300px;
+    margin: 50px;
+  }
+}
+
